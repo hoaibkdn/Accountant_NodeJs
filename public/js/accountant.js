@@ -54,6 +54,7 @@ function donViChange(unit){
 function thanhTien(){
 	var generalID = document.getElementById("general-table").childElementCount;
 	var exchange_rate = document.getElementById("ty-gia-"+generalID).innerHTML;
+	alert(exchange_rate);
 	var quantity = document.getElementById("so-luong-"+generalID).value;
 	var unit_price = document.getElementById("don-gia-"+generalID).value;
 	var total = exchange_rate*quantity*unit_price;
