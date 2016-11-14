@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 var mongodb = require('mongodb');
-var Handlebars = require('handlebars');
 /* GET list departments page. */
 
 // var context = {

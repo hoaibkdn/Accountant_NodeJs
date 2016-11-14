@@ -4,11 +4,11 @@
 
         <!-- Logo -->
             <h1><a href="index.html" id="logo">ZeroFour</a></h1>
-
+        <pre></pre>
         <!-- Nav -->
         <%
-            if(session.username){
-                if(session.role == 2){
+            if(user){
+                if(user.role == 2){
         %>
             <nav id="nav">
                 <ul>
@@ -39,7 +39,7 @@
                     </li>
                 </ul>
             </nav>
-            <a href="#" class="login"><%=session.username%></a>
+            <a href="#" class="login"><%=user.tenDangNhap%></a>
         <%
            } 
             }

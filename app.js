@@ -1,19 +1,24 @@
 var express = require('express');
-var exphbs  = require('express-handlebars');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
+var passport = require('passport');
+var flash    = require('connect-flash');
+var mongoose = require('mongoose');
+const configDb = require('./config/database.js');
+
 
 var home = require('./routes/home');
 var index = require('./routes/index');
-var login = require('./routes/login');
+var user = require('./routes/user');
 var kttt_pnk = require('./routes/kttt_phieuNhapKho');
 var nhap_phieuKho = require('./routes/nhap_phieuKho');
 
 var app = express();
+mongoose.connect(configDb.url);
 
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
@@ -22,9 +27,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// view engine setup - jade
-// app.set('views', path.join(__dirname, 'views'));
-// app.set('view engine', 'jade');
 
 // using session
 app.use(session({
@@ -38,19 +40,24 @@ app.use(session({
     resave: true,
     saveUninitialized: true
 }));
+
+// required for passport
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
+app.use(flash()); // use connect-flash for flash messages stored in session
+
+require('./config/passport')(passport); // pass passport for configuration
+
+
 app.use(function(req,res,next){
     res.locals.session = req.session;
     next();
 });
 
-// view engine setup - handlebars
-app.engine('handlebars', exphbs({defaultLayout: 'main'}));
-// app.set('view engine', 'handlebars');
-
 //set view engine to ejs
 app.set('view engine', 'ejs');
 app.use('/', index);
-app.use('/user', login);
+app.use('/user', user);
 app.use('/kttt_pnk', kttt_pnk);
 
 // catch 404 and forward to error handler
