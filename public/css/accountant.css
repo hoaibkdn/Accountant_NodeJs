@@ -1,0 +1,108 @@
+.login {
+  float: right;
+  padding: 0.3em;
+  background-color: #4a5057;
+  border-radius: 0.2em;
+  margin: 1.5em 0 0 0.5em;
+  color: white;
+  font-size: 1em;
+  text-decoration: inherit;
+  font-weight: bold; }
+
+.label-form {
+  float: left;
+  padding-right: 2em; }
+
+.tab {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1; }
+  .tab li {
+    float: left; }
+    .tab li a {
+      display: inline-block;
+      color: black;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+      transition: 0.3s;
+      font-size: 17px; }
+      .tab li a:hover {
+        background-color: #ddd; }
+      .tab li a:focus, .tab li a .active {
+        background-color: #ccc; }
+
+/* Style the tab content */
+.tabcontent, .account-tb, .cash-tb {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+  text-shadow: none; }
+  .tabcontent table, .account-tb table, .cash-tb table {
+    border: 1px solid black; }
+    .tabcontent table thead, .account-tb table thead, .cash-tb table thead {
+      border: 1px solid black; }
+      .tabcontent table thead th, .account-tb table thead th, .cash-tb table thead th {
+        border-right: 1px solid black;
+        background-color: #555c5e;
+        padding: 5px;
+        color: white;
+        font-weight: bold;
+        text-align: center; }
+    .tabcontent table tbody, .account-tb table tbody, .cash-tb table tbody {
+      border: 1px solid black; }
+      .tabcontent table tbody tr, .account-tb table tbody tr, .cash-tb table tbody tr {
+        text-align: center;
+        border: 1px solid black; }
+        .tabcontent table tbody tr:nth-child(odd), .account-tb table tbody tr:nth-child(odd), .cash-tb table tbody tr:nth-child(odd) {
+          background-color: #cccccc; }
+        .tabcontent table tbody tr td, .account-tb table tbody tr td, .cash-tb table tbody tr td {
+          border-right: 1px solid black;
+          padding: 5px; }
+          .tabcontent table tbody tr td input, .account-tb table tbody tr td input, .cash-tb table tbody tr td input {
+            border: none;
+            margin-top: 0.7em;
+            margin-bottom: 0em;
+            background-color: transparent;
+            border-bottom: 2px solid #555c5e;
+            border-radius: 0; }
+
+.account-tb {
+  display: block; }
+  .account-tb table thead tr:first-of-type {
+    border-bottom: 1px solid black; }
+    .account-tb table thead tr:first-of-type th {
+      border-right: 1px solid black;
+      text-align: center; }
+      .account-tb table thead tr:first-of-type th:first-of-type, .account-tb table thead tr:first-of-type th:nth-child(5) {
+        border-right: 0px solid black; }
+  .account-tb table thead tr th {
+    border-right: 1px solid black; }
+  .account-tb table tbody tr td {
+    border-right: 1px solid black; }
+
+.cash-tb {
+  display: block; }
+  .cash-tb table thead tr {
+    border-bottom: 1px solid black; }
+    .cash-tb table thead tr:first-of-type th {
+      border-right: 1px solid black;
+      text-align: center; }
+      .cash-tb table thead tr:first-of-type th:nth-child(2), .cash-tb table thead tr:first-of-type th:nth-child(5), .cash-tb table thead tr:first-of-type th:nth-child(6) {
+        border-right: 0px solid black; }
+    .cash-tb table thead tr th {
+      border-right: 1px solid black; }
+  .cash-tb table tbody tr td {
+    border-right: 1px solid black; }
+
+.top-title {
+  text-align: center; }
+
+.item-input {
+  padding: 1em 0.5em; }
+
+/*# sourceMappingURL=accountant.css.map */

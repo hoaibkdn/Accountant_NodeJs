@@ -1,0 +1,132 @@
+<!-- Header -->
+<header id="header">
+    <div class="inner">
+
+        <!-- Logo -->
+            <h1><a href="index.html" id="logo">ZeroFour</a></h1>
+
+        <!-- Nav -->
+        <%
+            if(session.username){
+                if(session.role == 2){
+        %>
+            <nav id="nav">
+                <ul>
+                    <li>
+                        <a href="#">Mua hàng nhập kho</a>
+                        <ul>
+                            <li><a href="/kttt_pnk">Phiếu nhập kho</a></li>
+                            <li><a href="#">Điều chỉnh</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">Vốn bằng tiền</a>
+                        <ul>
+                            <li><a href="#">Thu tiền mặt</a></li>
+                            <li><a href="#">Chi tiền mặt</a></li>
+                            <li><a href="#">Thu ngân hàng</a></li>
+                            <li><a href="#">Chi ngân hàng</a></li>
+                            <li><a href="#">Điều chỉnh</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">Báo cáo</a>
+                        <ul>
+                            <li><a href="#">Sổ cái chi tiết</a></li>
+                            <li><a href="#">Sổ cái tổng hợp</a></li>
+                            <li><a href="#">Sổ quỹ tiền mặt</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            <a href="#" class="login"><%=session.username%></a>
+        <%
+           } 
+            }
+            else{
+        %>
+            <nav id="nav">
+                <ul>
+                    <li>
+                        <a href="#">Mua hàng nhập kho</a>
+                        <ul>
+                            <li><a href="#">Phiếu nhập kho</a></li>
+                            <li><a href="#">Điều chỉnh</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">Vốn bằng tiền</a>
+                        <ul>
+                            <li><a href="#">Thu tiền mặt</a></li>
+                            <li><a href="#">Chi tiền mặt</a></li>
+                            <li><a href="#">Thu ngân hàng</a></li>
+                            <li><a href="#">Chi ngân hàng</a></li>
+                            <li><a href="#">Điều chỉnh</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">Báo cáo</a>
+                        <ul>
+                            <li><a href="#">Sổ cái chi tiết</a></li>
+                            <li><a href="#">Sổ cái tổng hợp</a></li>
+                            <li><a href="#">Sổ quỹ tiền mặt</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            <a href="#" class="login" data-toggle="modal" data-target="#log-in" >Đăng nhập</a>
+        <%}%>
+    </div>
+</header>
+
+<!--login modal-->
+          <div class="modal fade" id="log-in" role="dialog">
+            <div class="modal-dialog">
+
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Đăng nhập</h4>
+                </div>
+                <form action="/user/login" method="POST">
+                    <div class="modal-body col-md-12">
+                        <div class="item-input col-md-12">
+                            <div class="col-md-4">
+                              <p class="label-form">Tên đăng nhập</p>
+                            </div>
+                            <div class="col-md-8">
+                              <input type="text" class="form-control" name="username">
+                            </div>
+                        </div>
+                        <div class="item-input col-md-12">
+                            <div class="col-md-4">
+                              <p class="label-form">Mật khẩu</p>
+                            </div>
+                            <div class="col-md-8">
+                              <input type="password" class="form-control" name="password">
+                            </div>
+                        </div>
+                        <div class="item-input col-md-12">
+                            <div class="col-md-4">
+                                <p>Hệ thống</p>
+                            </div>
+                            <div class="col-md-8">
+                                <select class="form-control">
+                                    <option>NH2016</option>
+                                    <option>NH2015</option>
+                                    <option>NH2014</option>
+                                </select>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="submit" class="btn login" value="Đăng nhập"/>
+                        <input type="reset" class="btn login" value="Reset"/>
+                        <input type="button" class="btn login" data-dismiss="modal" value="Trở lại"/>
+                    </div>
+                </form>
+              </div>
+            </div>
+          </div>

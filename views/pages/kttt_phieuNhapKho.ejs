@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <% include ../partials/head %>
+</head>
+<body class="homepage">
+  <div id="page-wrapper">
+
+    <!-- Header Wrapper -->
+    <div id="header-wrapper">
+      <div class="container">
+        <% include ../partials/header %>            
+      </div>
+    </div>
+
+    <div id="main-wrapper">
+      <div class="wrapper style3">
+        <div class="inner">
+
+          <!-- Feature 1 -->
+          <div class="container">
+            <div class="row">
+              <div class="12u 12u(mobile)">
+
+                <!-- Article list -->
+                <section class="box article-list">
+                  <h2 class="icon fa-file-text-o">Phiếu nhập kho</h2>
+                  <br>
+
+                  <!-- Content chứng từ -->
+                  <article class="box excerpt">
+                  <form action="/kttt_pnk/nhap_phieuKho" method="POST">
+                      <div class="row">
+                        <div class="6u">
+                          <label for="ngayChungTu" class="label-form" >Ngày chứng từ  </label>
+                          <input id="ngayChungTu" type="date" class="form-control" style="width:60%;">
+                        </div>
+                        <div class="6u">
+                          <label for="soChungTu" class="label-form" >Số chứng từ  </label>
+                          <input id="soChungTu" type="text" class="form-control" style="width:60%;">
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="12u">
+                          <label for="dienGiai" class="label-form" >Diễn giải  </label>
+                          <input id="dienGiai" type="text" class="form-control" style="width:85%;">
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="5u">
+                          <label for="maNhaCC" class="label-form" >Mã nhà cung cấp </label>
+                          <select id="maNhaCC" class="form-control" style="width:50%;">
+                            <option>NCDVAN001</option>
+                            <option>NCDVAN001</option>
+                            <option>NCDVAN001</option>
+                            <option>NCDVAN001</option>
+                          </select>
+                        </div>
+                        <div class="7u">
+                          <input type="text" class="form-control" style="width:85%;">
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="12u">
+                          <label for="diaChi" class="label-form" >Địa chỉ </label>
+                          <input id="diaChi" type="text" class="form-control" style="width:85%;">
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="4u">
+                          <label for="maSoThue" class="label-form" >Mã số thuế</label>
+                          <input id="maSoThue" type="text" class="form-control" style="width:60%;">
+                        </div>
+                        <div class="4u">
+                          <label for="kyHieuHoaDon" class="label-form" >Ký hiệu hóa đơn</label>
+                          <input id="kyHieuHoaDon" type="text" class="form-control" style="width:40%;">
+                        </div>
+                        <div class="4u">
+                          <label for="mauSo" class="label-form" >Mẫu số</label>
+                          <input id="mauSo" type="text" class="form-control" style="width:60%;">
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="6u">
+                          <label for="ngayHoaDon" class="label-form" >Ngày hóa đơn</label>
+                          <input id="ngayHoaDon" type="date" class="form-control" style="width:60%;">
+                        </div>
+                        <div class="6u">
+                          <label for="soHoaDon" class="label-form" >Số hóa đơn</label>
+                          <input id="soHoaDon" type="text" class="form-control" style="width:60%;">
+                        </div>
+                      </div>
+                      <button style="margin-top: 3em; margin-left: 70em;" type="submit">Lưu</button>
+                    </form>
+                  </article>
+
+                  <article class="box excerpt">
+                    <ul class="tab">
+                      <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'thongTinChung')">Thông tin chung</a></li>
+                      <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'hoaDon')">Hóa đơn</a></li>
+                    </ul>
+                    <form id="thongTinChung" class="tabcontent">
+                      <div >
+                        <table>
+                          <thead>
+                            <tr>
+                              <th>STT</th>
+                              <th>Diễn giải</th>
+                              <th style="width: 10%;">Mã số hàng hóa</th>
+                              <th>Đơn vị tính</th>
+                              <th style="width: 10%;">Tỷ giá</th>
+                              <th style="width: 7%;">TK Nợ</th>
+                              <th style="width: 7%;">TK Có</th>
+                              <th style="width: 7%;">Số lượng</th>
+                              <th style="width: 7%;">Đơn giá</th>
+                              <th>Thành tiền</th>
+                            </tr>
+                          </thead>
+                          <tbody id="general-table">
+                            <tr>
+                              <td>1</td>
+                              <td><input type="text"></td>
+                              <td><input type="text"></td>
+                              <td>
+                                <select onchange="donViChange(this)" data-sel="1">
+                                  <option>VND</option>
+                                  <option>USD</option>
+                                  <option>POUD</option>
+                                </select>
+                              </td>
+                              <td id="ty-gia-1" onchange='thanhTien()'>1</td>
+                              <td><input type="text"></td>
+                              <td><input type="text"></td>
+                              <td onchange='thanhTien()'><input type="number" id="so-luong-1"></td>
+                              <td onchange='thanhTien()'><input type="number" id="don-gia-1"></td>
+                              <td id="thanh-tien-1"></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <button type="button" id="btn-add-row">New row</button>
+                      </div>
+                      <button type="submit">Lưu</button>
+                      <button >Hủy</button>
+                    </form>
+                    <form id="hoaDon" class="tabcontent">
+                      <div >
+                        <table>
+                          <thead>
+                            <tr>
+                              <th>STT</th>
+                              <th>Diễn giải</th>
+                              <th>Mã số hàng hóa</th>
+                              <th>Đơn vị tính</th>
+                              <th>Tỷ giá</th>
+                              <th>TK Nợ</th>
+                              <th>TK Có</th>
+                              <th>Số tiền chưa VAT</th>
+                              <th>Thuế suất VAT</th>
+                              <th>Số tiền VAT</th>
+                              <th>Thành tiền</th>
+                            </tr>
+                          </thead>
+                          <tbody id="invoice-table">
+                            <tr>
+                              <td>1</td>
+                              <td><input type="text"></td>
+                              <td><input type="text"></td>
+                              <td>
+                                <select>
+                                  <option>VND</option>
+                                  <option>USD</option>
+                                  <option>POUD</option>
+                                </select>
+                              </td>
+                              <td id="in-ty-gia-1">1</td>
+                              <td><input type="text"></td>
+                              <td><input type="text"></td>
+                              <td><input type="number"></td>
+                              <td>
+                                <select >
+                                  <option>Không thuế suất</option>
+                                  <option>0%</option>
+                                  <option>5%</option>
+                                  <option>10%</option>
+                                </select>
+                              </td>
+                              <td><input type="number"></td>
+                              <td>4.000.000</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <button type="button" id="btn-add-row-hd">New row</button>
+
+                      </div> 
+                      <button type="submit">Lưu</button>
+                      <button >Hủy</button>
+                    </form>
+                  </article>
+                </section>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <% include ../partials/footer %>
+  </div>
+
+  <!-- Scripts -->
+  <% include ../partials/foot %>
+</body>
+</html>
