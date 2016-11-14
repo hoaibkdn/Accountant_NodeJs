@@ -49,10 +49,10 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 require('./config/passport')(passport); // pass passport for configuration
 
 
-app.use(function(req,res,next){
-    res.locals.session = req.session;
-    next();
-});
+// app.use(function(req,res,next){
+//     res.locals.session = req.session;
+//     next();
+// });
 
 //set view engine to ejs
 app.set('view engine', 'ejs');
