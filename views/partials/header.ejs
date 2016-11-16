@@ -30,7 +30,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="#" class="" data-toggle="modal" data-target="#so-cai-tk">Báo cáo</a>
+                        <a href class="" data-toggle="modal" data-target="#so-cai-tk">Báo cáo</a>
                         <ul>
                             <li><a href="#">Sổ cái chi tiết</a></li>
                             <li><a href="#">Sổ cái tổng hợp</a></li>
@@ -41,7 +41,7 @@
             </nav>
             <a href="#" class="login"><%=user.tenDangNhap%></a>
         <%
-           } 
+           }
             }
             else{
         %>
@@ -65,7 +65,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="#" class="" data-toggle="modal" data-target="#so-cai-tk">Báo cáo</a>
+                        <a href class="" data-toggle="modal" data-target="#so-cai-tk" id="open-modal-socai">Báo cáo</a>
                         <ul>
                             <li><a href="#">Sổ cái chi tiết</a></li>
                             <li><a href="#">Sổ cái tổng hợp</a></li>
@@ -118,7 +118,7 @@
                         <option>NH2014</option>
                     </select>
                 </div>
-                
+
             </div>
         </div>
         <div class="modal-footer">
@@ -176,11 +176,12 @@
                               <p class="label-form">Chọn tài khoản</p>
                             </div>
                             <div class="col-md-9">
-                                <select class="form-control">
-                                    <option>152</option>
-                                    <option>153</option>
+                                <select class="form-control" id="tai-khoan">
+                                  <!--<option>152</option>
+
+                                      <option>153</option>
                                     <option>155</option>
-                                    <option>111</option>
+                                    <option>111</option> -->
                                 </select>
                             </div>
                         </div>
