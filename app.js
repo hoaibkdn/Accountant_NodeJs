@@ -1,44 +1,62 @@
 var express = require('express');
 var path = require('path');
-var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
-var mongoose = require('mongoose');
 var passport = require('passport');
 var flash    = require('connect-flash');
+var mongoose = require('mongoose');
+const configDb = require('./config/database.js');
 
+
+var home = require('./routes/home');
 var index = require('./routes/index');
-var users = require('./routes/users');
-
-var configDb = require('./config/database.js');
+var user = require('./routes/user');
+var kttt_pnk = require('./routes/kttt_phieuNhapKho');
+var nhap_phieuKho = require('./routes/nhap_phieuKho');
 
 var app = express();
 mongoose.connect(configDb.url);
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
-
-// uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+// using session
+app.use(session({
+    cookieName: 'session',
+    secret: 'eg[isfd-8yF9-7w2315df{}+Ijsli;;to8',
+    duration: 30*60*1000,
+    activeDuration: 5*60*1000,
+    httpOnly: true,
+    secure: true,
+    ephemeral: true,
+    resave: true,
+    saveUninitialized: true
+}));
+
 // required for passport
-app.use(session({ secret: 'iamanamateurinnodeiwanttobegood' })); // session secret
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
 
 require('./config/passport')(passport); // pass passport for configuration
 
+
+// app.use(function(req,res,next){
+//     res.locals.session = req.session;
+//     next();
+// });
+
+//set view engine to ejs
+app.set('view engine', 'ejs');
 app.use('/', index);
-app.use('/users', users);
+app.use('/user', user);
+app.use('/kttt_pnk', kttt_pnk);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
