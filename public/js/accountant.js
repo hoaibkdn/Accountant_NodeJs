@@ -40,6 +40,10 @@ $(document).ready(function(){
 			);
 
 	});
+
+
+
+
 });
 
 function donViChange(unit){
@@ -59,9 +63,27 @@ function thanhTien(){
 	var unit_price = document.getElementById("don-gia-"+generalID).value;
 	var total = exchange_rate*quantity*unit_price;
 	document.getElementById("thanh-tien-"+generalID).innerHTML = total;
-	
+
 }
 
-$(document).ready(function(){
-
-})
+  $(document).ready(function(){
+		$("#open-modal-socai").click(function(){
+			console.log("ahihi");
+			$("#tai-khoan").empty();
+			$.ajax({
+				url: "/locsocai/hoaitruong",
+				success: function(data){
+						console.log(data);
+						for( var i in data.optionNum){
+							console.log(data.optionNum[i].idTaiKhoan);
+							$("#tai-khoan").append("<option>"+data.optionNum[i].idTaiKhoan+"</option>");
+						}
+						return;
+				},
+				error : function (err){
+					console.log("err");
+					return;
+				}
+			});
+		});
+  });

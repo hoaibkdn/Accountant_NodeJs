@@ -15,7 +15,7 @@ var index = require('./routes/index');
 var user = require('./routes/user');
 var kttt_pnk = require('./routes/kttt_phieuNhapKho');
 var nhap_phieuKho = require('./routes/nhap_phieuKho');
-
+var locsocai = require('./routes/locSoCai');
 var app = express();
 mongoose.connect(configDb.url);
 
@@ -57,7 +57,7 @@ app.set('view engine', 'ejs');
 app.use('/', index);
 app.use('/user', user);
 app.use('/kttt_pnk', kttt_pnk);
-
+app.use('/locsocai', locsocai);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

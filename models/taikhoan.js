@@ -9,3 +9,5 @@ var taiKhoanSchema = mongoose.Schema({
 }, {
     collection: 'taikhoan'
 });
+
+module.exports = mongoose.model('taikhoan', taiKhoanSchema);
