@@ -2,6 +2,6 @@ module.exports = function loggedIn(req, res, next) {
     if(req.user){
         next();
     } else{
-        res.redirect('/user/login');
+        res.send("Not logged in yet")
     }
 }

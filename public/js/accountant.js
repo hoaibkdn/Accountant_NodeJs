@@ -40,6 +40,11 @@ $(document).ready(function(){
 			);
 
 	});
+
+
+	$('#thongTinChung').change(function(event){
+		console.log(event);
+	})
 });
 
 function donViChange(unit){

@@ -2,11 +2,9 @@ var express = require('express');
 var router = express.Router();
 var mongodb = require('mongodb');
 const util = require('util');
-/* GET home page. */
-console.log("Bullshit");
-router.post('/nhap_phieuKho', function(req, res, next) {
-	
 
+router.post('/nhap_phieuKho', function(req, res, next) {
+  console.log(req.body);
 });
 
 module.exports = router;

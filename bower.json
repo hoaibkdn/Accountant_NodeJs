@@ -1,0 +1,21 @@
+{
+  "name": "accountanode",
+  "description": "",
+  "main": "",
+  "authors": [
+    "tandat <tandat2209@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/hoaibkdn/Accountant_NodeJs",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7"
+  }
+}
