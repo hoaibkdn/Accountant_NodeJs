@@ -141,14 +141,14 @@
                   <button type="button" class="close" data-dismiss="modal">&times;</button>
                   <h4 class="modal-title">SỔ CHI TIẾT TÀI KHOẢN</h4>
                 </div>
-                <form action="/baocao/loc?idTaiKhoan={}">
+                <form action="/baocao/locsocai">
                     <div class="modal-body col-md-12">
                         <div class="item-input col-md-12">
                             <div class="col-md-3">
                               <p class="label-form">Tên công ty</p>
                             </div>
                             <div class="col-md-9">
-                              <input type="text" class="form-control">
+                              <input type="text" class="form-control" value="Công ty cổ phần Ngô Han">
                             </div>
                         </div>
                         <div class="item-input col-md-12">
@@ -173,15 +173,22 @@
                         </div>
                         <div class="item-input col-md-12">
                             <div class="col-md-3">
+                              <p class="label-form">Mã nhà cung cấp</p>
+                            </div>
+                            <div class="col-md-3">
+                                <select class="form-control" id="nha-cung-cap">
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                              <input type="text" class="form-control" value="" readonly>
+                            </div>
+                        </div>
+                        <div class="item-input col-md-12">
+                            <div class="col-md-3">
                               <p class="label-form">Chọn tài khoản</p>
                             </div>
                             <div class="col-md-9">
                                 <select class="form-control" id="tai-khoan">
-                                  <!--<option>152</option>
-
-                                      <option>153</option>
-                                    <option>155</option>
-                                    <option>111</option> -->
                                 </select>
                             </div>
                         </div>

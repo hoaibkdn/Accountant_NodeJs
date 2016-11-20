@@ -37,13 +37,8 @@ $(document).ready(function(){
 			"<td onchange='thanhTien();'><input type='number' id='don-gia-"+generalID+"'></td>"+
 			"<td id='thanh-tien-"+generalID+"'></td>"+
 			"</tr>"
-			);
-
+		);
 	});
-
-
-
-
 });
 
 function donViChange(unit){
@@ -66,22 +61,28 @@ function thanhTien(){
 
 }
 
+
   $(document).ready(function(){
 		$("#open-modal-socai").click(function(){
-			console.log("ahihi");
 			$("#tai-khoan").empty();
+			$("#nha-cung-cap").empty();
 			$.ajax({
-				url: "/locsocai/hoaitruong",
+				url: "/locsocai/yeucau",
 				success: function(data){
-						console.log(data);
-						for( var i in data.optionNum){
-							console.log(data.optionNum[i].idTaiKhoan);
-							$("#tai-khoan").append("<option>"+data.optionNum[i].idTaiKhoan+"</option>");
-						}
-						return;
+					console.log(data.optionNum[1]);
+					for( var i in data.optionNum){
+						console.log(data.optionNum[i].idTaiKhoan);
+						$("#tai-khoan").append("<option>"+data.optionNum[i].idTaiKhoan+"</option>");
+					}
+					console.log(data.optionNCC[0]);
+					for (var j in data.optionNCC){
+						console.log(data.optionNCC[j].maNhaCungCap);
+						$("#nha-cung-cap").append("<option>"+data.optionNCC[j].maNhaCungCap+"</option>");
+					}
+					return;
 				},
 				error : function (err){
-					console.log("err");
+					console.log("err " + err);
 					return;
 				}
 			});
