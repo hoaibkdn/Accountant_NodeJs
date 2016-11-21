@@ -15,11 +15,12 @@ var chungtuSchema = new Schema({
     diaChi: String,
     tenNhaCC: String
   },
-  maSoThue: String,
   ngayNhapKho: Date,
   hoaDon: {
+    maSoThue: String,
     kyHieuHD: String,
     mauSo: String,
+    maSoThue: String,
     ngayHD: Date,
     soHD: String
   }, 

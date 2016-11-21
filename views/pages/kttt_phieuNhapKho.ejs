@@ -57,7 +57,7 @@
                           </select>
                         </div>
                         <div class="7u">
-                          <input type="text" name="tenNhaCC" class="form-control" style="width:85%;">
+                          <input type="text" id="tenNhaCC" name="tenNhaCC" class="form-control" style="width:85%;">
                         </div>
                       </div>
                       <div class="row">
@@ -90,17 +90,16 @@
                           <input id="soHoaDon" name="soHD" type="text" class="form-control" style="width:60%;">
                         </div>
                       </div>
-                      <button style="margin-top: 3em; margin-left: 70em;" type="submit">Lưu</button>
                     </form>
                   </article>
 
                   <article class="box excerpt">
                     <ul class="tab">
-                      <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'thongTinChung')">Thông tin chung</a></li>
+                      <li><a href="javascript:void(0)" class="tablinks active" onclick="openTab(event, 'thongTinChung')">Thông tin chung</a></li>
                       <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'hoaDon')">Hóa đơn</a></li>
                     </ul>
-                    <form id="thongTinChung" class="tabcontent">
-                      <div >
+                    <form>
+                      <div id="thongTinChung" class="tabcontent" style="display: block">
                         <table>
                           <thead>
                             <tr>
@@ -117,33 +116,33 @@
                             </tr>
                           </thead>
                           <tbody id="general-table">
-                            <tr>
+                            <tr class="chitiet-1">
                               <td>1</td>
-                              <td><input type="text" name="dienGiai"></td>
-                              <td><input type="text"></td>
+                              <td><input type="text" class="dienGiai" onchange="changeInTwoTable(this)"></td>
+                              <td><input type="text" class="maSoHH" onchange="changeInTwoTable(this)"></td>
                               <td>
-                                <select onchange="donViChange(this)" data-sel="1">
+                                <select onchange="changeInTwoTable(this)" data-sel="1" class="loaiTienTe">
                                   <option>VND</option>
                                   <option>USD</option>
                                   <option>POUD</option>
                                 </select>
                               </td>
-                              <td id="ty-gia-1" onchange='thanhTien()'>1</td>
-                              <td><input type="text"></td>
-                              <td><input type="text"></td>
-                              <td onchange='thanhTien()'><input type="number" id="so-luong-1"></td>
-                              <td onchange='thanhTien()'><input type="number" id="don-gia-1"></td>
-                              <td id="thanh-tien-1"></td>
+                              <td onchange='thanhTien()' class="tyGia">1</td>
+                              <td><input type="text" class="tkNo"></td>
+                              <td><input type="text" class="tkCo"></td>
+                              <td><input type="text" class="soLuong" onchange='thanhTien(this)'></td>
+                              <td><input type="text" class="donGia" onchange='thanhTien(this)'></td>
+                              <td class="thanhTien"></td>
                             </tr>
                           </tbody>
                         </table>
-                        <button type="button" id="btn-add-row">New row</button>
+                        <!-- <button type="button" id="btn-add-row">New row</button> -->
                       </div>
-                      <button type="submit">Lưu</button>
-                      <button >Hủy</button>
-                    </form>
-                    <form id="hoaDon" class="tabcontent">
-                      <div >
+          <!--             <button type="submit">Lưu</button>
+                      <button >Hủy</button> -->
+                    <!-- </form> -->
+                   <!--  <form id="hoaDon" class="tabcontent"> -->
+                      <div id="hoaDon" class="tabcontent">
                         <table>
                           <thead>
                             <tr>
@@ -161,38 +160,38 @@
                             </tr>
                           </thead>
                           <tbody id="invoice-table">
-                            <tr>
+                            <tr class="chitiet-1">
                               <td>1</td>
-                              <td><input type="text"></td>
-                              <td><input type="text"></td>
+                              <td><input type="text" class="dienGiai" onchange="changeInTwoTable(this)"></td>
+                              <td><input type="text" class="maSoHH" onchange="changeInTwoTable(this)"></td>
                               <td>
-                                <select>
+                                <select class="loaiTienTe" onchange="changeInTwoTable(this)">
                                   <option>VND</option>
                                   <option>USD</option>
                                   <option>POUD</option>
                                 </select>
                               </td>
-                              <td id="in-ty-gia-1">1</td>
-                              <td><input type="text"></td>
-                              <td><input type="text"></td>
-                              <td><input type="number"></td>
+                              <td class="tyGia">1</td>
+                              <td><input type="text" class="tkNo"></td>
+                              <td><input type="text" class="tkCo"></td>
+                              <td><input type="text" class="soTienChuaVAT"></td>
                               <td>
-                                <select >
+                                <select class="giaTriThueSuat">
                                   <option>Không thuế suất</option>
                                   <option>0%</option>
                                   <option>5%</option>
                                   <option>10%</option>
                                 </select>
                               </td>
-                              <td><input type="number"></td>
+                              <td><input type="text" class="soTienVAT"></td>
                               <td>4.000.000</td>
                             </tr>
                           </tbody>
                         </table>
-                        <button type="button" id="btn-add-row-hd">New row</button>
 
                       </div> 
-                      <button type="submit">Lưu</button>
+                      <button type="button" id="btn-add-row">New row</button>
+                      <button type="submit" id="btn-save-chitiet">Lưu</button>
                       <button >Hủy</button>
                     </form>
                   </article>
