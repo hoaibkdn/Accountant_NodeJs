@@ -20,58 +20,58 @@ $(document).ready(function(){
 	generalID++;
 	$("#btn-add-row").click(function(){
 		$newRow = `
-			 <tr class="chitiet-${generalID}">
-          <td>${generalID}</td>
-          <td><input type="text" class="dienGiai" onchange="changeInTwoTable(this)"></td>
-          <td><input type="text" class="maSoHH" onchange="changeInTwoTable(this)"></td>
-          <td>
-            <select onchange="changeInTwoTable(this)" data-sel="1" class="loaiTienTe">
-              <option>VND</option>
-              <option>USD</option>
-              <option>POUD</option>
-            </select>
-          </td>
-          <td onchange='thanhTien()' class="tyGia">1</td>
-          <td><input type="text" class="tkNo"></td>
-          <td><input type="text" class="tkCo"></td>
-          <td><input type="text" class="soLuong" onchange='thanhTien(this)'></td>
-          <td><input type="text" class="donGia" onchange='thanhTien(this)'></td>
-          <td class="thanhTien"></td>
-        </tr>
-
-		`;
-		$("#general-table").append($newRow);
-
-		$newInvoiceRow = `
-		<tr class="chitiet-${generalID}">
-       <td>${generalID}</td>
-        <td><input type="text" class="dienGiai" onchange="changeInTwoTable(this)"></td>
-        <td><input type="text" class="maSoHH" onchange="changeInTwoTable(this)"></td>
-        <td>
-          <select class="loaiTienTe" onchange="changeInTwoTable(this)">
-            <option>VND</option>
-            <option>USD</option>
-            <option>POUD</option>
-          </select>
-        </td>
-        <td class="tyGia">1</td>
-        <td><input type="text" class="tkNo"></td>
-        <td><input type="text" class="tkCo"></td>
-        <td><input type="text" class="soTienChuaVAT"></td>
-        <td>
-          <select class="giaTriThueSuat">
-            <option>Không thuế suất</option>
-            <option>0%</option>
-            <option>5%</option>
-            <option>10%</option>
-          </select>
-        </td>
-        <td><input type="text" class="soTienVAT"></td>
-        <td>4.000.000</td>
+    <tr class="chitiet-${generalID}">
+    <td>${generalID}</td>
+    <td><input type="text" class="dienGiai" onchange="changeInTwoTable(this)"></td>
+    <td><input type="text" class="maSoHH" onchange="changeInTwoTable(this)"></td>
+    <td>
+    <select onchange="changeInTwoTable(this)" data-sel="1" class="loaiTienTe">
+    <option>VND</option>
+    <option>USD</option>
+    <option>POUD</option>
+    </select>
+    </td>
+    <td onchange='thanhTien()' class="tyGia">1</td>
+    <td><input type="text" class="tkNo"></td>
+    <td><input type="text" class="tkCo"></td>
+    <td><input type="text" class="soLuong" onchange='thanhTien(this)'></td>
+    <td><input type="text" class="donGia" onchange='thanhTien(this)'></td>
+    <td class="thanhTien"></td>
     </tr>
-		`;
-		$("#invoice-table").append($newInvoiceRow);
-	});
+
+    `;
+    $("#general-table").append($newRow);
+
+    $newInvoiceRow = `
+    <tr class="chitiet-${generalID}">
+    <td>${generalID}</td>
+    <td><input type="text" class="dienGiai" onchange="changeInTwoTable(this)"></td>
+    <td><input type="text" class="maSoHH" onchange="changeInTwoTable(this)"></td>
+    <td>
+    <select class="loaiTienTe" onchange="changeInTwoTable(this)">
+    <option>VND</option>
+    <option>USD</option>
+    <option>POUD</option>
+    </select>
+    </td>
+    <td class="tyGia">1</td>
+    <td><input type="text" class="tkNo"></td>
+    <td><input type="text" class="tkCo"></td>
+    <td><input type="text" class="soTienChuaVAT"></td>
+    <td>
+    <select class="giaTriThueSuat">
+    <option>Không thuế suất</option>
+    <option>0%</option>
+    <option>5%</option>
+    <option>10%</option>
+    </select>
+    </td>
+    <td><input type="text" class="soTienVAT"></td>
+    <td>4.000.000</td>
+    </tr>
+    `;
+    $("#invoice-table").append($newInvoiceRow);
+  });
 
 	$("#btn-save-chitiet").click(function(event){
 		event.preventDefault();
@@ -90,34 +90,34 @@ $(document).ready(function(){
     chungtu.hoaDon.ngayHD = $("#ngayHoaDon").val();
     chungtu.hoaDon.soHD = $("#soHoaDon").val();
 
-		var tableData = [];
-		
-		$("#general-table").children("tr").each(function(index){
-			var ct = {};
-			ct.dienGiai = $(this).find("input.dienGiai").val();
-			ct.maSoHangHoa = $(this).find("input.maSoHH").val();
-			ct.loaiTienTe = $(this).find("select.loaiTienTe").val();
-      ct.tyGiaTienTe = $(this).find("td.tyGia").text();
-			ct.chung = {};
-			ct.chung.tkNo = $(this).find("input.tkNo").val();
-			ct.chung.tkCo = $(this).find("input.tkCo").val();
-			ct.chung.soLuong = $(this).find("input.soLuong").val();
-			ct.chung.donGia = $(this).find("input.donGia").val();
-			tableData.push(ct);
-		})
-		$("#invoice-table").children("tr").each(function(index){
-			var ct = tableData[index];
-			ct.hd = {};
-			ct.hd.tkNo = $(this).find("input.tkNo").val();
-			ct.hd.tkCo = $(this).find("input.tkCo").val();
-			ct.hd.soTienChuaVAT = $(this).find("input.soTienChuaVAT").val();
-			ct.hd.giaTriThueSuat = $(this).find("select.giaTriThueSuat").val();
-			ct.hd.soTienVAT = $(this).find("input.soTienVAT").val();
-			tableData[index] = ct;
-		})
-		
+    var tableData = [];
+
+    $("#general-table").children("tr").each(function(index){
+     var ct = {};
+     ct.dienGiai = $(this).find("input.dienGiai").val();
+     ct.maSoHangHoa = $(this).find("input.maSoHH").val();
+     ct.loaiTienTe = $(this).find("select.loaiTienTe").val();
+     ct.tyGiaTienTe = $(this).find("td.tyGia").text();
+     ct.chung = {};
+     ct.chung.tkNo = $(this).find("input.tkNo").val();
+     ct.chung.tkCo = $(this).find("input.tkCo").val();
+     ct.chung.soLuong = $(this).find("input.soLuong").val();
+     ct.chung.donGia = $(this).find("input.donGia").val();
+     tableData.push(ct);
+   })
+    $("#invoice-table").children("tr").each(function(index){
+     var ct = tableData[index];
+     ct.hd = {};
+     ct.hd.tkNo = $(this).find("input.tkNo").val();
+     ct.hd.tkCo = $(this).find("input.tkCo").val();
+     ct.hd.soTienChuaVAT = $(this).find("input.soTienChuaVAT").val();
+     ct.hd.giaTriThueSuat = $(this).find("select.giaTriThueSuat").val();
+     ct.hd.soTienVAT = $(this).find("input.soTienVAT").val();
+     tableData[index] = ct;
+   })
+
     chungtu.cacChiTiet = tableData;
-		console.log(chungtu)
+    console.log(chungtu)
     // $.post('/kttt_pnk', chungtu, function(data){
 
     // })
@@ -134,16 +134,16 @@ $(document).ready(function(){
         console.log("error", data)
       }
     })
-	})
+  })
 
 });
 
 function donViChange(unit){
   changeInTwoTable(unit);
-	const ar_tyGia = [1,22500, 40000];
-	var idx = unit.selectedIndex;
+  const ar_tyGia = [1,22500, 40000];
+  var idx = unit.selectedIndex;
   console.log($(unit).parent().siblings(".tyGia"));
-   $("td.tyGia").text(ar_tyGia[idx]);
+  $("td.tyGia").text(ar_tyGia[idx]);
 }
 
 function thanhTien(node){
@@ -179,3 +179,56 @@ function changeInTwoTable(node){
   $("#general-table").find(`tr.${rowClass}`).find(`${tagName}.${className}`).val($(node).val())
   $("#invoice-table").find(`tr.${rowClass}`).find(`${tagName}.${className}`).val($(node).val())
 }
+
+
+$(document).ready(function(){
+  $("#open-modal-socai").click(function(){
+    $("#tai-khoan").empty();
+    $("#nha-cung-cap").empty();
+    var getlistTK = $.ajax({
+      url: "/locsocai/yeucauTK",
+      success: function(data){
+        console.log(data.optionNum[1]);
+        for( var i in data.optionNum){
+          console.log(data.optionNum[i].idTaiKhoan);
+          $("#tai-khoan").append("<option value='"+data.optionNum[i].idTaiKhoan+"'>"+data.optionNum[i].idTaiKhoan+"</option>");
+        }
+        
+        return;
+      },
+      error : function (err){
+        console.log("err " + err);
+        return;
+      }
+    });
+
+    var getlistNCC = $.ajax({
+      url: "/locsocai/yeucauNCC",
+      success: function(data){
+        console.log(data.optionNCC[0]);
+        for (var j in data.optionNCC){
+          console.log(data.optionNCC[j].maNhaCungCap);
+          $("#nha-cung-cap").append("<option value='"+data.optionNCC[j].maNhaCungCap+"'>"+data.optionNCC[j].maNhaCungCap+"</option>");
+        }
+        return;
+      },
+      error : function (err){
+        console.log("err " + err);
+        return;
+      }
+    })
+  });
+});
+
+
+/*------export pdf------*/
+$("#btnPrint").live("click", function () {
+  var divContents = $("#main-wrapper").html();
+  var printWindow = window.open('', '', 'height=400,width=800');
+  printWindow.document.write('<html><head><title>DIV Contents</title>');
+  printWindow.document.write('</head><body >');
+  printWindow.document.write(divContents);
+  printWindow.document.write('</body></html>');
+  printWindow.document.close();
+  printWindow.print();
+});
