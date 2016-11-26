@@ -24,20 +24,21 @@ router.get('/baocao', function(req, res, next){
   var maNhaCungCap = req.param("nhaCungCap");
   var maTaiKhoan = req.param("idTaiKhoan");
 
-  chungtu.find({'cacChiTiet':{$elemMatch: {mauSoHangHoa:"HH001"}}}, function(err, baocao){
+  chungtu.find({}, function(err, baocao){
   
   	console.log("maNhaCungCap "+maNhaCungCap);
   	console.log("maTaiKhoan "+maTaiKhoan);
   	// var bcjs = JSON.stringify(baocao);
   	console.log("baocao "+baocao);
   	if(err) res.send(err);
-  	else if(baocao.length)
+  	else{
   		res.render('pages/socaitaikhoan', 
   		{ 
 			user: req.user,
-		    baocao: JSON.stringify(baocao)
+		    baocao: req.baocao
   		});
-  	else res.send("no data");
+  	}
+  	
   });			
 });
 

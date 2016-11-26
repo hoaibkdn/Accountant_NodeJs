@@ -221,6 +221,11 @@ $(document).ready(function(){
 });
 
 
+function gotoChiTienMat(){
+  location.href = "/phieuchitienmat";
+}
+
+
 /*------export pdf------*/
 $("#btnPrint").live("click", function () {
   var divContents = $("#main-wrapper").html();

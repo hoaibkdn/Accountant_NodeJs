@@ -17,6 +17,7 @@ var user = require('./routes/user');
 var kttt_pnk = require('./routes/kttt_phieuNhapKho');
 var nhap_phieuKho = require('./routes/nhap_phieuKho');
 var locsocai = require('./routes/locSoCai');
+var phieuchitienmat = require('./routes/phieuchitienmat');
 
 var app = express();
 mongoose.connect(configDb.url);
@@ -49,18 +50,13 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 
 require('./config/passport')(passport); // pass passport for configuration
 
-
-// app.use(function(req,res,next){
-//     res.locals.session = req.session;
-//     next();
-// });
-
 //set view engine to ejs
 app.set('view engine', 'ejs');
 app.use('/', index);
 app.use('/user', user);
 app.use('/kttt_pnk', kttt_pnk);
 app.use('/locsocai', locsocai);
+app.use('/phieuchitienmat', phieuchitienmat);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

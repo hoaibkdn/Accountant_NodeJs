@@ -24,7 +24,7 @@
 
                 <!-- Article list -->
                 <section class="box article-list">
-                  <h2 class="icon fa-file-text-o">Phiếu nhập kho</h2>
+                  <h2 class="icon fa-file-text-o">Phiếu Chi Tiền mặt</h2>
                   <br>
 
                   <!-- Content chứng từ -->
@@ -96,7 +96,6 @@
                   <article class="box excerpt">
                     <ul class="tab">
                       <li><a href="javascript:void(0)" class="tablinks active" onclick="openTab(event, 'thongTinChung')">Thông tin chung</a></li>
-                      <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'hoaDon')">Hóa đơn</a></li>
                     </ul>
                     <form>
                       <div id="thongTinChung" class="tabcontent" style="display: block">
@@ -137,57 +136,8 @@
                           </tbody>
                         </table>
                       </div>
-                      <div id="hoaDon" class="tabcontent">
-                        <table>
-                          <thead>
-                            <tr>
-                              <th>STT</th>
-                              <th>Diễn giải</th>
-                              <th>Mã số hàng hóa</th>
-                              <th>Đơn vị tính</th>
-                              <th>Tỷ giá</th>
-                              <th>TK Nợ</th>
-                              <th>TK Có</th>
-                              <th>Số tiền chưa VAT</th>
-                              <th>Thuế suất VAT</th>
-                              <th>Số tiền VAT</th>
-                              <th>Thành tiền</th>
-                            </tr>
-                          </thead>
-                          <tbody id="invoice-table">
-                            <tr class="chitiet-1">
-                              <td>1</td>
-                              <td><input type="text" class="dienGiai" onchange="changeInTwoTable(this)"></td>
-                              <td><input type="text" class="maSoHH" onchange="changeInTwoTable(this)"></td>
-                              <td>
-                                <select class="loaiTienTe" onchange="changeInTwoTable(this)">
-                                  <option>VND</option>
-                                  <option>USD</option>
-                                  <option>POUD</option>
-                                </select>
-                              </td>
-                              <td class="tyGia">1</td>
-                              <td><input type="text" class="tkNo"></td>
-                              <td><input type="text" class="tkCo"></td>
-                              <td><input type="text" class="soTienChuaVAT"></td>
-                              <td>
-                                <select class="giaTriThueSuat">
-                                  <option>Không thuế suất</option>
-                                  <option>0%</option>
-                                  <option>5%</option>
-                                  <option>10%</option>
-                                </select>
-                              </td>
-                              <td><input type="text" class="soTienVAT"></td>
-                              <td>4.000.000</td>
-                            </tr>
-                          </tbody>
-                        </table>
-
-                      </div> 
                       <button type="button" id="btn-add-row">New row</button>
                       <button type="submit" id="btn-save-chitiet">Lưu</button>
-                      <button type="button" id="chi-tien-mat" onclick="gotoChiTienMat()">Phieu chi</button>
                       <button >Hủy</button>
                     </form>
                   </article>
