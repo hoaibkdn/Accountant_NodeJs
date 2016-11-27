@@ -12,13 +12,32 @@ function openTab(evt, cityName) {
 	evt.currentTarget.className += " active";
 }
 
+// redirect to phieu chi
+$(document).ready(function(){
+  $("#chi-tien-mat").click(function(){
+    alert("phieu chi");
+    location.href = "/phieuchitienmat";
+    // $.ajax({
+    //   url: "/kttt_pnk",
+    //   success: function(data){
+    //     console.log("data "+data);
+    //     console.log("NCT "+data.chungTuNhapKho.ngayChungTu);
+    //     $("#ngayChungTu").val(data.chungTuNhapKho.ngayChungTu);
+    //     $("#soChungTu").val(data.chungTuNhapKho.soChungTu);
+    //   },
+    //   error: function(err){
+    //     console.log("err "+ err);
+    //   }
+    // });
+  });
+});
 
 
 /*------general-table------*/
 $(document).ready(function(){
 	var generalID = document.getElementById("general-table").childElementCount;
-	generalID++;
 	$("#btn-add-row").click(function(){
+    generalID++;
 		$newRow = `
     <tr class="chitiet-${generalID}">
     <td>${generalID}</td>
@@ -67,7 +86,7 @@ $(document).ready(function(){
     </select>
     </td>
     <td><input type="text" class="soTienVAT"></td>
-    <td>4.000.000</td>
+    <td></td>
     </tr>
     `;
     $("#invoice-table").append($newInvoiceRow);
@@ -105,6 +124,7 @@ $(document).ready(function(){
      ct.chung.donGia = $(this).find("input.donGia").val();
      tableData.push(ct);
    })
+
     $("#invoice-table").children("tr").each(function(index){
      var ct = tableData[index];
      ct.hd = {};
@@ -220,20 +240,14 @@ $(document).ready(function(){
   });
 });
 
-
-function gotoChiTienMat(){
-  location.href = "/phieuchitienmat";
-}
-
-
 /*------export pdf------*/
-$("#btnPrint").live("click", function () {
-  var divContents = $("#main-wrapper").html();
-  var printWindow = window.open('', '', 'height=400,width=800');
-  printWindow.document.write('<html><head><title>DIV Contents</title>');
-  printWindow.document.write('</head><body >');
-  printWindow.document.write(divContents);
-  printWindow.document.write('</body></html>');
-  printWindow.document.close();
-  printWindow.print();
-});
+// $("#btnPrint").live("click", function () {
+//   var divContents = $("#main-wrapper").html();
+//   var printWindow = window.open('', '', 'height=400,width=800');
+//   printWindow.document.write('<html><head><title>DIV Contents</title>');
+//   printWindow.document.write('</head><body >');
+//   printWindow.document.write(divContents);
+//   printWindow.document.write('</body></html>');
+//   printWindow.document.close();
+//   printWindow.print();
+// });

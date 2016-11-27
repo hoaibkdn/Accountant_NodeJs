@@ -32,9 +32,9 @@
 
               <!-- Article list -->
               <section class="box article-list">
-                <h2 class="top-title" style="font-weight:bold;">Sổ cái tài khoản 155</h2>
+                <h2 class="top-title" style="font-weight:bold;">Sổ cái tài khoản <%=maTaiKhoan%></h2>
                 <div class="top-title">
-                  <p>Tên tài khoản: Nguyên vật liệu</p>
+                  <p>Tên tài khoản:<%=tenTaiKhoan%></p>
                   <p>Từ ngày: 15/10/2016 đến 30/10/2016</p>
                 </div>
                 
@@ -71,18 +71,24 @@
                           <td></td>
                         </tr>
                         <% if(baocao){
+                            for(var i=0; i<baocao.length; i++){
                         %>
+                        
                         <tr>
-                          <td><%=baocao.ngayChungTu%></td>
-                          <td>16/10/2016</td>
-                          <td>Mua 2 cái ghế</td>
-                          <td>331</td>
-                          <td>4.000.000</td>
+                          <td><%=baocao[i].soChungTu%></td>
+                          <td><%=baocao[i].ngayChungTu%></td>
+                            <% for(var j=0; j<baocao[i].cacChiTiet.length; j++){
+                            %>
+                          <td><%=baocao[i].cacChiTiet[j].dienGiai%></td>
+                          <td><%=baocao[i].cacChiTiet[j].cacTaiKhoan[1].idTaiKhoan%></td>
+                          <td><%=baocao[i].cacChiTiet[j].cacTaiKhoan[0].tkNo%></td>
                           <td></td>
                         </tr>
-                        <%
-                        }%>
-                        <tr>
+                        <%    }
+                            }
+                          }
+                        %>
+                        <!-- <tr>
                           <td>MH001</td>
                           <td>16/10/2016</td>
                           <td>Mua 2 cái ghế</td>
@@ -97,7 +103,7 @@
                           <td>331</td>
                           <td>5.000.000</td>
                           <td></td>
-                        </tr>
+                        </tr> -->
                         <tr style="font-weight:bold;">
                           <td></td>
                           <td></td>

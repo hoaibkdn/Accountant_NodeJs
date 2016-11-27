@@ -10,14 +10,13 @@ var flash    = require('connect-flash');
 var mongoose = require('mongoose');
 const configDb = require('./config/database.js');
 
-
-var home = require('./routes/home');
-var index = require('./routes/index');
 var user = require('./routes/user');
-var kttt_pnk = require('./routes/kttt_phieuNhapKho');
-var nhap_phieuKho = require('./routes/nhap_phieuKho');
-var locsocai = require('./routes/locSoCai');
-var phieuchitienmat = require('./routes/phieuchitienmat');
+var SiteController = require('./web/controllers/SiteController');
+var NhapKhoController = require('./web/controllers/NhapKhoController');
+var BaoCaoController = require('./web/controllers/BaoCaoController');
+var TaiKhoanController = require('./web/controllers/TaiKhoanController');
+var NhaCungCapController = require('./web/controllers/NhaCungCapController');
+var PhieuChiController = require('./web/controllers/PhieuChiController');
 
 var app = express();
 mongoose.connect(configDb.url);
@@ -51,12 +50,18 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 require('./config/passport')(passport); // pass passport for configuration
 
 //set view engine to ejs
+app.set('views', path.join(__dirname, 'web/views'));
 app.set('view engine', 'ejs');
-app.use('/', index);
+
 app.use('/user', user);
-app.use('/kttt_pnk', kttt_pnk);
-app.use('/locsocai', locsocai);
-app.use('/phieuchitienmat', phieuchitienmat);
+// routing controllers
+app.get('/', SiteController.homepage);
+app.get('/kttt_pnk', NhapKhoController.createPhieuNhapKho);
+app.post('/kttt_pnk', NhapKhoController.submitCreatePhieuNhapKho);
+app.get('/locsocai', BaoCaoController.viewFilterSoCai);
+app.get('/locsocai/yeucauTK', TaiKhoanController.getTaiKhoanJSON);
+app.get('/locsocai/yeucauNCC', NhaCungCapController.getNhaCungCapJSON);
+app.get('/phieuchitienmat', PhieuChiController.viewFormPhieuChi);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

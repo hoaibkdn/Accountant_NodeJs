@@ -2,7 +2,7 @@
 var LocalStrategy   = require('passport-local').Strategy;
 
 // load up the user model
-var NguoiDung       = require('../models/nguoidung');
+var NguoiDung       = require('../web/models/nguoidung');
 
 module.exports = function(passport) {
     // =========================================================================
