@@ -6,16 +6,12 @@
             <h1><a href="index.html" id="logo">ZeroFour</a></h1>
         <pre></pre>
         <!-- Nav -->
-        <%
-            if(user){
-                if(user.role == 2){
-        %>
             <nav id="nav">
                 <ul>
                     <li>
                         <a href="#">Mua hàng nhập kho</a>
                         <ul>
-                            <li><a href="/kttt_pnk">Phiếu nhập kho</a></li>
+                            <li><a href="<%if(user){%>/kttt_pnk<%}else{%>#<%}%>">Phiếu nhập kho</a></li>
                             <li><a href="#">Điều chỉnh</a></li>
                         </ul>
                     </li>
@@ -30,7 +26,13 @@
                         </ul>
                     </li>
                     <li>
-                        <a href class="" data-toggle="modal" data-target="#so-cai-tk">Báo cáo</a>
+                    <%
+                    if(user) {
+                        %><a href="#" class="" data-toggle="modal" data-target="#so-cai-tk" id="open-modal-socai">Báo cáo</a><%
+                    } else {
+                        %><a href >Báo cáo</a><%
+                    }
+                    %>
                         <ul>
                             <li><a href="#">Sổ cái chi tiết</a></li>
                             <li><a href="#">Sổ cái tổng hợp</a></li>
@@ -39,43 +41,13 @@
                     </li>
                 </ul>
             </nav>
+            <%
+                if(user) { %>
+
             <a href="#" class="login"><%=user.tenDangNhap%></a>
-        <%
-           }
-            }
-            else{
-        %>
-            <nav id="nav">
-                <ul>
-                    <li>
-                        <a href="#">Mua hàng nhập kho</a>
-                        <ul>
-                            <li><a href="/kttt_pnk">Phiếu nhập kho</a></li>
-                            <li><a href="#">Điều chỉnh</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#">Vốn bằng tiền</a>
-                        <ul>
-                            <li><a href="#">Thu tiền mặt</a></li>
-                            <li><a href="#">Chi tiền mặt</a></li>
-                            <li><a href="#">Thu ngân hàng</a></li>
-                            <li><a href="#">Chi ngân hàng</a></li>
-                            <li><a href="#">Điều chỉnh</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href class="" data-toggle="modal" data-target="#so-cai-tk" id="open-modal-socai">Báo cáo</a>
-                        <ul>
-                            <li><a href="#">Sổ cái chi tiết</a></li>
-                            <li><a href="#">Sổ cái tổng hợp</a></li>
-                            <li><a href="#">Sổ quỹ tiền mặt</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </nav>
+            <% } else { %>
             <a href="#" class="login" data-toggle="modal" data-target="#log-in" >Đăng nhập</a>
-        <%}%>
+            <% } %>
     </div>
 </header>
 

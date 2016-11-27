@@ -27,49 +27,53 @@
                   <h2 class="icon fa-file-text-o">Phiếu Chi Tiền mặt</h2>
                   <br>
 
+                  <% if(chungtu) {
+                  %>
+
                   <!-- Content chứng từ -->
                   <article class="box excerpt">
                   <form action="/kttt_pnk" method="POST">
                       <div class="row">
                         <div class="6u">
                           <label for="ngayChungTu" class="label-form" >Ngày chứng từ  </label>
-                          <input id="ngayChungTu" name="ngayChungTu" type="date" class="form-control" style="width:60%;">
+                          <input id="ngayChungTu" name="ngayChungTu" type="date" class="form-control" style="width:60%;" 
+                            value="<%= chungtu.ngayChungTu%>" readonly>
                         </div>
                         <div class="6u">
                           <label for="soChungTu" class="label-form" >Số chứng từ  </label>
-                          <input id="soChungTu" name="soChungTu" type="text" class="form-control" style="width:60%;">
+                          <input id="soChungTu" name="soChungTu" type="text" class="form-control" style="width:60%;"
+                            value="PC<%= chungtu.soChungTu%>">
                         </div>
                       </div>
                       <div class="row">
                         <div class="12u">
                           <label for="dienGiai" class="label-form" >Diễn giải  </label>
-                          <input id="dienGiai" name="dienGiai" type="text" class="form-control" style="width:85%;">
+                          <input id="dienGiai" name="dienGiai" type="text" class="form-control" style="width:85%;"
+                          value="Thanh toan <%= chungtu.dienGiai%>">
                         </div>
                       </div>
                       <div class="row">
                         <div class="5u">
                           <label for="maNhaCC" class="label-form" >Mã nhà cung cấp </label>
-                          <select id="maNhaCC" name="maNhaCC" class="form-control" style="width:50%;">
-                            <option>NCDVAN001</option>
-                            <option>NCDVAN001</option>
-                            <option>NCDVAN001</option>
-                            <option>NCDVAN001</option>
-                          </select>
+                          <input type="text" name="" class="form-control" style="width:50%;" value="<%=chungtu.maNhaCC%>">
                         </div>
                         <div class="7u">
-                          <input type="text" id="tenNhaCC" name="tenNhaCC" class="form-control" style="width:85%;">
+                          <input type="text" id="tenNhaCC" name="tenNhaCC" class="form-control" style="width:85%;" 
+                          value="<%=chungtu.tenNhaCC%>">
                         </div>
                       </div>
                       <div class="row">
                         <div class="12u">
                           <label for="diaChi" class="label-form" >Địa chỉ </label>
-                          <input id="diaChi" name="diaChi" type="text" class="form-control" style="width:85%;">
+                          <input id="diaChi" name="diaChi" type="text" class="form-control" style="width:85%;"
+                          value="<%=chungtu.diaChi%>">
                         </div>
                       </div>
                       <div class="row">
                         <div class="4u">
                           <label for="maSoThue" class="label-form" >Mã số thuế</label>
-                          <input id="maSoThue" name="maSoThue" type="text" class="form-control" style="width:60%;">
+                          <input id="maSoThue" name="maSoThue" type="text" class="form-control" style="width:60%;"
+                          value="<%=chungtu.maSoThue%>">
                         </div>
                         <div class="4u">
                           <label for="kyHieuHoaDon" class="label-form" >Ký hiệu hóa đơn</label>
@@ -92,6 +96,7 @@
                       </div>
                     </form>
                   </article>
+                  <% } %>
 
                   <article class="box excerpt">
                     <ul class="tab">

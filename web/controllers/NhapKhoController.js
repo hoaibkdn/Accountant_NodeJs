@@ -41,13 +41,13 @@ module.exports = {
 		console.log(ctReceived);
 		console.log(chungtu);
 
-		chungtu.save(function(err){
+		chungtu.save(function(err, chungtu){
 			if (err) {
 			  	console.log(err);
-			  	next(err)
+			  	res.json(err);
 			}
 			else {
-			  	res.redirect('/kttt_pnk');
+			  	res.json(chungtu);
 			}
 		});
 	}

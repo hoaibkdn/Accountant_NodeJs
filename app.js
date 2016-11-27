@@ -10,7 +10,7 @@ var flash    = require('connect-flash');
 var mongoose = require('mongoose');
 const configDb = require('./config/database.js');
 
-var user = require('./routes/user');
+var user = require('./web/controllers/user');
 var SiteController = require('./web/controllers/SiteController');
 var NhapKhoController = require('./web/controllers/NhapKhoController');
 var BaoCaoController = require('./web/controllers/BaoCaoController');

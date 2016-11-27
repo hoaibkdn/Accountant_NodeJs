@@ -12,26 +12,6 @@ function openTab(evt, cityName) {
 	evt.currentTarget.className += " active";
 }
 
-// redirect to phieu chi
-$(document).ready(function(){
-  $("#chi-tien-mat").click(function(){
-    alert("phieu chi");
-    location.href = "/phieuchitienmat";
-    // $.ajax({
-    //   url: "/kttt_pnk",
-    //   success: function(data){
-    //     console.log("data "+data);
-    //     console.log("NCT "+data.chungTuNhapKho.ngayChungTu);
-    //     $("#ngayChungTu").val(data.chungTuNhapKho.ngayChungTu);
-    //     $("#soChungTu").val(data.chungTuNhapKho.soChungTu);
-    //   },
-    //   error: function(err){
-    //     console.log("err "+ err);
-    //   }
-    // });
-  });
-});
-
 
 /*------general-table------*/
 $(document).ready(function(){
@@ -148,10 +128,12 @@ $(document).ready(function(){
       data: JSON.stringify(chungtu),
       dataType: "json",
       success: function(data){
-        console.log("success")
+        console.log("success", data);
+        $("#id-chungtu-saved").val(data._id);
+        $("#form-redirect-to-phieuchitienmat").submit();
       },
       error: function(data){
-        console.log("error", data)
+        console.log("error", data);
       }
     })
   })
