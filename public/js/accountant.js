@@ -59,14 +59,14 @@ $(document).ready(function(){
     <td><input type="text" class="soTienChuaVAT"></td>
     <td>
     <select class="giaTriThueSuat">
-    <option>Không thuế suất</option>
-    <option>0%</option>
-    <option>5%</option>
-    <option>10%</option>
+    <option value="0">Không thuế suất</option>
+    <option value="0">0%</option>
+    <option value="0.05">5%</option>
+    <option value="0.1">10%</option>
     </select>
     </td>
     <td><input type="text" class="soTienVAT"></td>
-    <td></td>
+    <td class="thanhTien"></td>
     </tr>
     `;
     $("#invoice-table").append($newInvoiceRow);
@@ -102,6 +102,7 @@ $(document).ready(function(){
      ct.chung.tkCo = $(this).find("input.tkCo").val();
      ct.chung.soLuong = $(this).find("input.soLuong").val();
      ct.chung.donGia = $(this).find("input.donGia").val();
+     ct.chung.thanhTien = $(this).find("td.thanhTien").text();
      tableData.push(ct);
    })
 
@@ -117,7 +118,7 @@ $(document).ready(function(){
    })
 
     chungtu.cacChiTiet = tableData;
-    console.log(chungtu)
+    console.log(chungtu);
     // $.post('/kttt_pnk', chungtu, function(data){
 
     // })
@@ -149,12 +150,6 @@ function donViChange(unit){
 }
 
 function thanhTien(node){
-	// var generalID = document.getElementById("general-table").childElementCount;
-	// var exchange_rate = document.getElementById("ty-gia-"+generalID).innerHTML;
-	// var quantity = document.getElementById("so-luong-"+generalID).value;
-	// var unit_price = document.getElementById("don-gia-"+generalID).value;
-	// var total = exchange_rate*quantity*unit_price;
-	// document.getElementById("thanh-tien-"+generalID).innerHTML = total;
 	var tagName = node.tagName;
   var className = $(node).attr('class').split(" ")[0];
   var rowClass = $(node).closest("tr").attr("class");
@@ -182,7 +177,41 @@ function changeInTwoTable(node){
   $("#invoice-table").find(`tr.${rowClass}`).find(`${tagName}.${className}`).val($(node).val())
 }
 
+//set select in phieu nhap kho
+$(document).ready(function(){
+  $("#phieu-nhap-kho").click(function(){
+    alert("alo");
+    $.ajax({
+      url: "/locsocai/yeucauNCC",
+      success: function(data){
+        console.log(data.optionNCC[0]);
+      },
+      error: function (err){
+        console.log("err " + err);
+      }
+  })
+  
+    // success: function(data){
+    //   console.log(data.optionNCC[0]);
+    //   for (var j in data.optionNCC){
+    //     console.log(data.optionNCC[j].maNhaCungCap);
+    //     $("#maNhaCC").append("<option value='"+data.optionNCC[j].maNhaCungCap+"'>"+data.optionNCC[j].maNhaCungCap+"</option>");
+    //   }
+    //   $("#maNhaCC").click(function(this){
+    //     $(".tenNhaCC").val(data.optionNCC[this.selectedIndex].tenNhaCungCap);
+    //     $(".diaChi").val(data.optionNCC[this.selectedIndex].diaChi);
+    //   });
+    //   return;
+    // },
+    // error : function (err){
+    //   console.log("err " + err);
+    //   return;
+    // }
+  });
+});
 
+
+// get nha cung cap va tai khoan
 $(document).ready(function(){
   $("#open-modal-socai").click(function(){
     $("#tai-khoan").empty();
@@ -195,7 +224,6 @@ $(document).ready(function(){
           console.log(data.optionNum[i].idTaiKhoan);
           $("#tai-khoan").append("<option value='"+data.optionNum[i].idTaiKhoan+"'>"+data.optionNum[i].idTaiKhoan+"</option>");
         }
-        
         return;
       },
       error : function (err){
@@ -222,14 +250,17 @@ $(document).ready(function(){
   });
 });
 
-/*------export pdf------*/
-// $("#btnPrint").live("click", function () {
-//   var divContents = $("#main-wrapper").html();
-//   var printWindow = window.open('', '', 'height=400,width=800');
-//   printWindow.document.write('<html><head><title>DIV Contents</title>');
-//   printWindow.document.write('</head><body >');
-//   printWindow.document.write(divContents);
-//   printWindow.document.write('</body></html>');
-//   printWindow.document.close();
-//   printWindow.print();
-// });
+function thanhTienHoaDon(node){
+  var tagName = node.tagName;
+  var className = $(node).attr('class').split(" ")[0];
+  var rowClass = $(node).closest("tr").attr("class");
+  var price = $("#invoice-table").find(`tr.${rowClass}`).find('input.soTienChuaVAT').val();
+  var exchange_rate = $("#invoice-table").find(`tr.${rowClass}`).find('td.tyGia').text();
+  var giaTriThueSuat = $('select[name=giaTriThueSuat]').val();
+  console.log("giaTriThueSuat "+giaTriThueSuat);
+  var soTienVAT = exchange_rate*price*giaTriThueSuat;
+  var total = soTienVAT + price;
+  $("#invoice-table").find(`tr.${rowClass}`).find('td.soTienVAT').text(soTienVAT);
+  $("#invoice-table").find(`tr.${rowClass}`).find('td.thanhTien').text(total);
+}
+

@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html lang="en"  xmlns="http://www.w3.org/1999/xhtml">
 <head>
+
   <% include ../partials/head %>
+
 </head>
-<body class="homepage">
+<body class="homepage" onload="load()">
+<canvas width=800 height=550 id="thecanvas"></canvas>
   <div id="page-wrapper">
 
     <!-- Header Wrapper -->
@@ -15,14 +18,60 @@
 
     <div id="main-wrapper">
       <div class="wrapper style3">
-        <div class="inner">
-          <div class="container">
-            <div class="row">
-              <div class="6u top-title">
+        <div class="inner" id="thehtml">
+          <style>
+            p,tr,td,th,p{
+                font-size: 11px;
+            }
+            #thecanvas{
+              display: none;
+            }
+            .top-title-left{
+              float: left;
+              text-align: center;
+            }
+            .top-title-right{
+              float: right;
+            }
+            .content-wrap{
+               width: 700px;
+              margin: auto;
+            }
+            .row-content-1{
+              overflow: hidden;
+            }
+            .article-list{
+              text-align: center;
+            }
+            table.pdf-table {
+                border-collapse: collapse;
+                width: 100%;
+            }
+
+            table.pdf-table td, th {
+                border: 1px solid #dddddd;
+                text-align: left;
+                padding: 8px;
+            }
+
+            table.pdf-table tr:nth-child(even) {
+                background-color: #dddddd;
+            }
+            .top-title-ft {
+                padding: 0 65px;
+            }
+            #theimage{
+              display: none;
+            }
+          </style>
+          <div class="container content-wrap">
+         
+            <div class="row row-content-1">
+              <div class="6u top-title top-title-left">
                 <p>Tên công ty: Công ty cổ phần Ngô Han</p>
                 <p>Địa chỉ: Quận 10, Tp Hồ Chí Minh</p>
               </div>
-              <div class="6u top-title">
+              <div class="6u top-title top-title-right">
                 <p>Mẫu số S03b-DN</p>
                 <p>Ban hành theo TT số 200/2014/QĐ-BTC</p>
                 <p>Ngày 20/3/2014 của Bộ trường BTC</p>
@@ -42,7 +91,7 @@
                 
                 <article class="box excerpt">
                   <div id="thongTinChung" class="account-tb">
-                    <table>
+                    <table class="pdf-table">
                       <thead>
                         <tr>
                           <th>Chứng từ</th>
@@ -70,7 +119,7 @@
                           <td ></td>
                           <td></td>
                         </tr>
-                        <% if(baocao){
+                        <!-- <% if(baocao){
                             for(var i=0; i<baocao.length; i++){
                         %>
                         
@@ -80,15 +129,15 @@
                             <% for(var j=0; j<baocao[i].cacChiTiet.length; j++){
                             %>
                           <td><%=baocao[i].cacChiTiet[j].dienGiai%></td>
-                          <td><%=baocao[i].cacChiTiet[j].cacTaiKhoan[1].idTaiKhoan%></td>
-                          <td><%=baocao[i].cacChiTiet[j].cacTaiKhoan[0].tkNo%></td>
+                          <td><%=baocao[i].cacChiTiet[j].cacTaiKhoan.idTaiKhoan%></td>
+                          <td><%=baocao[i].cacChiTiet[j].cacTaiKhoan.tkNo%></td>
                           <td></td>
                         </tr>
                         <%    }
                             }
                           }
-                        %>
-                        <!-- <tr>
+                        %> -->
+                        <tr>
                           <td>MH001</td>
                           <td>16/10/2016</td>
                           <td>Mua 2 cái ghế</td>
@@ -103,7 +152,7 @@
                           <td>331</td>
                           <td>5.000.000</td>
                           <td></td>
-                        </tr> -->
+                        </tr>
                         <tr style="font-weight:bold;">
                           <td></td>
                           <td></td>
@@ -126,18 +175,16 @@
                 </article>
               </section>
             </div>
-            
-            <!--nguoi ky gui-->
             <div class="row" style="margin-top:1em;">
-              <div class="4u top-title">
+              <div class="4u top-title top-title-left top-title-ft">
                 <p>Người lập</p>
                 <p>Ký và ghi rõ họ tên</p>
               </div>
-              <div class="4u top-title">
+              <div class="4u top-title top-title-left top-title-ft">
                 <p>Kế toán trưởng</p>
                 <p>Ký và ghi rõ họ tên</p>
               </div>
-              <div class="4u top-title">
+              <div class="4u top-title top-title-left top-title-ft">
                 <p>Ngày 5 tháng 11 năm 2016</p>
                 <p>Giám đốc</p>
                 <p>Ký và ghi rõ họ tên</p>
@@ -147,7 +194,8 @@
         </div>
       </div>
 
-      <button type="button" id="btnPrint">Print</button>
+      <button type="button" id="btnPrint" onclick="to_image()">Print</button>
+      <image id="theimage"></image>
     </div>
   </div>
 
@@ -156,5 +204,22 @@
 
 <!-- Scripts -->
 <% include ../partials/foot %>
+<script src="../js/lib-pdf.js"></script>
+<script>
+var canvas;
+function load(){
+  canvas  = document.getElementById("thecanvas"),
+  html_container = document.getElementById("thehtml"),
+  html = html_container.innerHTML;
+  rasterizeHTML.drawHTML(html, canvas);
+}
+function to_image(){
+  var urlData=canvas.toDataURL();
+  console.log(urlData);
+  var doc = new jsPDF();
+  doc.addImage(urlData, 'JPEG', 15, 40, 180, 160);
+    doc.save("hoai'ss-ngok'ss.pdf");
+}
+</script>
 </body>
 </html>

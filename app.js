@@ -17,6 +17,7 @@ var BaoCaoController = require('./web/controllers/BaoCaoController');
 var TaiKhoanController = require('./web/controllers/TaiKhoanController');
 var NhaCungCapController = require('./web/controllers/NhaCungCapController');
 var PhieuChiController = require('./web/controllers/PhieuChiController');
+var SoQuyTienMatController = require('./web/controllers/SoQuyTienMatController');
 
 var app = express();
 mongoose.connect(configDb.url);
@@ -62,6 +63,7 @@ app.get('/locsocai', BaoCaoController.viewFilterSoCai);
 app.get('/locsocai/yeucauTK', TaiKhoanController.getTaiKhoanJSON);
 app.get('/locsocai/yeucauNCC', NhaCungCapController.getNhaCungCapJSON);
 app.get('/phieuchitienmat', PhieuChiController.viewFormPhieuChi);
+app.get('/soquytienmat', SoQuyTienMatController.viewSoQuyTienMat);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

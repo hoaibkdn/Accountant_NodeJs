@@ -50,10 +50,10 @@
                         <div class="5u">
                           <label for="maNhaCC" class="label-form" >Mã nhà cung cấp </label>
                           <select id="maNhaCC" name="maNhaCC" class="form-control" style="width:50%;">
+                            <!-- <option>NCDVAN001</option>
                             <option>NCDVAN001</option>
                             <option>NCDVAN001</option>
-                            <option>NCDVAN001</option>
-                            <option>NCDVAN001</option>
+                            <option>NCDVAN001</option> -->
                           </select>
                         </div>
                         <div class="7u">
@@ -166,19 +166,20 @@
                                   <option>POUD</option>
                                 </select>
                               </td>
-                              <td class="tyGia">1</td>
+                              <td onchange="thanhTienHoaDon(this)" class="tyGia">1</td>
                               <td><input type="text" class="tkNo"></td>
                               <td><input type="text" class="tkCo"></td>
-                              <td><input type="text" class="soTienChuaVAT"></td>
+                              <td><input type="text" class="soTienChuaVAT" onchange="thanhTienHoaDon(this)"></td>
                               <td>
-                                <select class="giaTriThueSuat">
-                                  <option>Không thuế suất</option>
-                                  <option>0%</option>
-                                  <option>5%</option>
-                                  <option>10%</option>
+                                <select onchange="thanhTienHoaDon(this)" class="giaTriThueSuat" 
+                                name="giaTriThueSuat">
+                                  <option value="0">Không thuế suất</option>
+                                  <option value="0">0%</option>
+                                  <option value="0.05">5%</option>
+                                  <option value="0.1">10%</option>
                                 </select>
                               </td>
-                              <td><input type="text" class="soTienVAT"></td>
+                              <td class="soTienVAT"></td>
                               <td class="thanhTien"></td>
                             </tr>
                           </tbody>

@@ -21,9 +21,9 @@ module.exports = {
 		chungtu.hoaDon.mauSo = ctReceived.hoaDon.mauSo;
 		chungtu.hoaDon.ngayHD = ctReceived.hoaDon.ngayHD;
 		chungtu.hoaDon.soHD = ctReceived.hoaDon.soHD;
-		for (let i in ctReceived.cacChiTiet) {
-			let chitiet = ctReceived.cacChiTiet[i];
-			let obj = {}
+		for (var i in ctReceived.cacChiTiet) {
+			var chitiet = ctReceived.cacChiTiet[i];
+			var obj = {}
 			obj.dienGiai = chitiet.dienGiai;
 			obj.mauSoHangHoa = chitiet.mauSoHangHoa;
 			obj.tienTe = {};
@@ -35,7 +35,14 @@ module.exports = {
 			// obj.giaTriThueSuat = chitiet.hd.giaTriThueSuat;
 			obj.giaTriThueSuat = 0;
 			obj.cacTaiKhoan = [];
+
 			// TODO: add cacTaiKhoan
+			for(var j in chitiet.cacTaiKhoan){
+				var taiKhoan = chitiet.cacTaiKhoan[j];
+				var objTK = {}
+				objTK.idTaiKhoan = taiKhoan.tkNo;
+				objTK.tkNo = taiKhoan.thanhTien
+			}
 			chungtu.cacChiTiet[i] = obj;
 		}
 		console.log(ctReceived);
