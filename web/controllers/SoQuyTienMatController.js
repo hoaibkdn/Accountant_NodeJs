@@ -2,21 +2,20 @@ var Chungtu = require('../models/chungtu');
 
 module.exports = {
 	viewSoQuyTienMat: function(req, res, next) {
-		
+		var today = new Date();
 		Chungtu.find({
-			'cacChiTiet.cacTaiKhoan.idTaiKhoan': "111"
+			'cacChiTiet.cacTaiKhoan.idTaiKhoan': "111",
+			'loaiChungTu':"ChiTienMat"
 		}, function(err, baocao) {
 		  	console.log(baocao);
-		  	// console.log("chi tiet", baocao[0].soChungTu);
-		  	// console.log("bao cao "+baocao);
-		  	// var bcjs = JSON.stringify(baocao);
 		  	if(err) next(err);
 		  	else{
 		  		res.render('pages/soQuyTienMat',
 		  		{ 
 		  			user: req.user,
 		  			baocao: baocao,
-		  			tenTaiKhoan: "Tiền mặt"
+		  			tenTaiKhoan: "Tiền mặt",
+		  			today: today
 		  		});
 	  		}
 	  	});			

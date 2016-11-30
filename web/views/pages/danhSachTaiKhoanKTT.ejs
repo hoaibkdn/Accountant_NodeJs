@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <% include ../partials/head %>
+</head>
+<body class="homepage">
+  <div id="page-wrapper">
+
+    <!-- Header Wrapper -->
+    <div id="header-wrapper">
+      <div class="container">
+        <% include ../partials/header %>            
+      </div>
+    </div>
+
+    <div id="main-wrapper">
+      <div class="wrapper style3">
+        <div class="inner">
+
+          <!-- Feature 1 -->
+          <div class="container">
+            <div class="row">
+              <div class="12u 12u(mobile)">
+
+                <!-- Article list -->
+                <section class="box article-list">
+                  <h2 class="top-title" style="font-weight:bold;">Sổ tài khoản</h2>
+                  
+                  <br>
+                  
+                  <article class="box excerpt">
+                    <div id="thongTinChung" class="account-tb">
+                      <table>
+                        <thead>
+                          <tr>
+                            <th style="border-right: 1px solid #000">Tài khoản</th>
+                            <th>Tên tài khoản</th>
+                            <th>Tài khoản Nợ </th>
+                            <th>Tài khoản Có</th>
+                            <th style="border-right: 1px solid #000">Kế toán</th>
+                            <th>Phản hồi</th>
+                          </tr>
+                          
+                        </thead>
+                        <tbody id="general-table">
+                          <tr>
+                            <td>155</td>
+                            <td>Nguyên vật liệu</td>
+                            <td>1.000.000</td>
+                            <td>0</td>
+                            <td>Ketoanthanhtoan</td>
+                            <td><button type="button">Phản hồi</button></td>
+                          </tr>
+                          <tr>
+                            <td>331</td>
+                            <td>Các khoản phải trả</td>
+                            <td>1.100.000</td>
+                            <td>1.100.000</td>
+                            <td>Ketoanthanhtoan</td>
+                            <td><button type="button">Report</button></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </article>
+                </section>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <% include ../partials/footer %>
+  </div>
+
+  <!-- Scripts -->
+  <% include ../partials/foot %>
+</body>
+</html>

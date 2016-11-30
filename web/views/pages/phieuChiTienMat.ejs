@@ -47,7 +47,7 @@
                       </div>
                       <div class="row">
                         <div class="12u">
-                          <label for="dienGiai" class="label-form" >Diễn giải  </label>
+                          <label for="dienGiai" class="label-form" >Diễn giải</label>
                           <input id="dienGiai" name="dienGiai" type="text" class="form-control" style="width:85%;"
                           value="Thanh toan <%= chungtu.dienGiai%>">
                         </div>
@@ -116,14 +116,15 @@
                               <th style="width: 7%;">TK Có</th>
                               <th style="width: 7%;">Số lượng</th>
                               <th style="width: 7%;">Đơn giá</th>
+                              <th style="width: 10%;">Thuế suất VAT</th>
                               <th>Thành tiền</th>
                             </tr>
                           </thead>
-                          <tbody id="general-table">
+                          <tbody id="general-table-chi">
                             <tr class="chitiet-1">
                               <td>1</td>
-                              <td><input type="text" class="dienGiai" onchange="changeInTwoTable(this)"></td>
-                              <td><input type="text" class="maSoHH" onchange="changeInTwoTable(this)"></td>
+                              <td><input type="text" class="dienGiai" ></td>
+                              <td><input type="text" class="maSoHH"></td>
                               <td>
                                 <select onchange="changeInTwoTable(this)" data-sel="1" class="loaiTienTe">
                                   <option>VND</option>
@@ -136,13 +137,22 @@
                               <td><input type="text" class="tkCo"></td>
                               <td><input type="text" class="soLuong" onchange='thanhTien(this)'></td>
                               <td><input type="text" class="donGia" onchange='thanhTien(this)'></td>
+                              <td>
+                                <select onchange="thanhTienHoaDon(this)" class="giaTriThueSuat" 
+                                name="giaTriThueSuat">
+                                  <option value="0">Không thuế suất</option>
+                                  <option value="0">0%</option>
+                                  <option value="0.05">5%</option>
+                                  <option value="0.1">10%</option>
+                                </select>
+                              </td>
                               <td class="thanhTien"></td>
                             </tr>
                           </tbody>
                         </table>
                       </div>
-                      <button type="button" id="btn-add-row">New row</button>
-                      <button type="submit" id="btn-save-chitiet">Lưu</button>
+                      <button type="button" id="btn-add-row-pc">New row</button>
+                      <button type="submit" id="btn-save-pc">Lưu</button>
                       <button >Hủy</button>
                     </form>
                   </article>

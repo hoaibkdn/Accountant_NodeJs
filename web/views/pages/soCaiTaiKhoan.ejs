@@ -119,54 +119,29 @@
                           <td ></td>
                           <td></td>
                         </tr>
-                        <!-- <% if(baocao){
+                        <% if(baocao){
                             for(var i=0; i<baocao.length; i++){
+                              for(var j=0; j<baocao[i].cacChiTiet.length; j++){
                         %>
-                        
                         <tr>
                           <td><%=baocao[i].soChungTu%></td>
                           <td><%=baocao[i].ngayChungTu%></td>
-                            <% for(var j=0; j<baocao[i].cacChiTiet.length; j++){
-                            %>
                           <td><%=baocao[i].cacChiTiet[j].dienGiai%></td>
-                          <td><%=baocao[i].cacChiTiet[j].cacTaiKhoan.idTaiKhoan%></td>
-                          <td><%=baocao[i].cacChiTiet[j].cacTaiKhoan.tkNo%></td>
+                          <td><%=baocao[i].cacChiTiet[j].cacTaiKhoan[1].idTaiKhoan%></td>
+                          <td id='tkNo'+i><%=baocao[i].cacChiTiet[j].cacTaiKhoan[0].tkNo%></td>
                           <td></td>
                         </tr>
-                        <%    }
+                        <%  
+                              }  
                             }
                           }
-                        %> -->
-                        <tr>
-                          <td>MH001</td>
-                          <td>16/10/2016</td>
-                          <td>Mua 2 cái ghế</td>
-                          <td>331</td>
-                          <td>4.000.000</td>
-                          <td></td>
-                        </tr>
-                        <tr>
-                          <td>MH002</td>
-                          <td>16/10/2016</td>
-                          <td>Mua 1 cái bàn</td>
-                          <td>331</td>
-                          <td>5.000.000</td>
-                          <td></td>
-                        </tr>
+                        %>
                         <tr style="font-weight:bold;">
                           <td></td>
                           <td></td>
                           <td></td>
                           <td>Cộng phát sinh</td>
-                          <td>9.000.000</td>
-                          <td></td>
-                        </tr>
-                        <tr style="font-weight:bold;">
-                          <td></td>
-                          <td></td>
-                          <td></td>
-                          <td>Số dư cuối kỳ</td>
-                          <td>9.000.000</td>
+                          <td id="cong-phat-sinh"></td>
                           <td></td>
                         </tr>
                       </tbody>
@@ -185,7 +160,7 @@
                 <p>Ký và ghi rõ họ tên</p>
               </div>
               <div class="4u top-title top-title-left top-title-ft">
-                <p>Ngày 5 tháng 11 năm 2016</p>
+                <p>5 tháng 11 năm 2016</p>
                 <p>Giám đốc</p>
                 <p>Ký và ghi rõ họ tên</p>
               </div>

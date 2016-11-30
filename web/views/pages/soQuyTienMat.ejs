@@ -84,15 +84,24 @@
                           <td ></td>
                           <td>10.000.000</td>
                         </tr>
+                        <%if(baocao){
+                          for(var i=0; i<baocao.length; i++){
+                              for(var j=0; j<baocao[i].cacChiTiet.length; j++){
+                        %>
                         <tr>
-                          <td>5/11/2016</td>
-                          <td>16/10/2016</td>
+                          <td><%=today%></td>
+                          <td><%=baocao[i].ngayChungTu%></td>
                           <td></td>
-                          <td>Chi tiền mặt mua 2 cái ghế, 1 bàn</td>
+                          <td><%=baocao[i].cacChiTiet[j].dienGiai%></td>
                           <td></td>
-                          <td>9.900.000</td>
+                          <td><%=baocao[i].cacChiTiet[j].cacTaiKhoan[1].tkNo%></td>
                           <td>100.000</td>
                         </tr>
+                        <%
+                              }
+                            }
+                          }
+                        %>
                         <tr style="font-weight:bold;">
                           <td></td>
                           <td></td>

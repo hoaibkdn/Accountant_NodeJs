@@ -49,21 +49,23 @@
                       <div class="row">
                         <div class="5u">
                           <label for="maNhaCC" class="label-form" >Mã nhà cung cấp </label>
-                          <select id="maNhaCC" name="maNhaCC" class="form-control" style="width:50%;">
-                            <!-- <option>NCDVAN001</option>
+                          <select id="maNhaCC" name="maNhaCC" class="form-control" style="width:50%;" 
+                            onchange="changeMaNCC(this)">
                             <option>NCDVAN001</option>
-                            <option>NCDVAN001</option>
-                            <option>NCDVAN001</option> -->
+                            <option>NCDVAN002</option>
                           </select>
                         </div>
                         <div class="7u">
-                          <input type="text" id="tenNhaCC" name="tenNhaCC" class="form-control" style="width:85%;">
+                          <input type="text" id="tenNhaCC" name="tenNhaCC" class="form-control tenNhaCC" 
+                          style="width:85%;"
+                          value="Công ty gỗ nội thất">
                         </div>
                       </div>
                       <div class="row">
                         <div class="12u">
                           <label for="diaChi" class="label-form" >Địa chỉ </label>
-                          <input id="diaChi" name="diaChi" type="text" class="form-control" style="width:85%;">
+                          <input id="diaChi" name="diaChi" type="text" class="form-control" style="width:85%;"
+                          value="Quận Hải Châu, Đà Nẵng">
                         </div>
                       </div>
                       <div class="row">

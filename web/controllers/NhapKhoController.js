@@ -8,6 +8,9 @@ module.exports = {
 
 	submitCreatePhieuNhapKho: function(req, res, next) {
 		var ctReceived = req.body;
+		var arr_idTK = ["155","331","1331", "331"];
+		console.log("arr_idTK "+arr_idTK[1]);
+		console.log("req.body "+ctReceived);
 		var chungtu = new ChungTu();
 		chungtu.loaiChungTu = "Nhap Kho";
 		chungtu.ngayChungTu = ctReceived.ngayChungTu;
@@ -31,17 +34,34 @@ module.exports = {
 			obj.tienTe.tyGiaTienTe = chitiet.tyGiaTienTe;
 			obj.soLuong = chitiet.chung.soLuong;
 			obj.donGia = chitiet.chung.donGia;
+
 			// TODO: fix to number
-			// obj.giaTriThueSuat = chitiet.hd.giaTriThueSuat;
-			obj.giaTriThueSuat = 0;
+			obj.giaTriThueSuat = chitiet.hd.giaTriThueSuat;
+			// obj.giaTriThueSuat = ;
 			obj.cacTaiKhoan = [];
 
 			// TODO: add cacTaiKhoan
-			for(var j in chitiet.cacTaiKhoan){
-				var taiKhoan = chitiet.cacTaiKhoan[j];
+			for(var j=0; j<4; j++){
+			// 	//var taiKhoan = chitiet.cacTaiKhoan[j];
 				var objTK = {}
-				objTK.idTaiKhoan = taiKhoan.tkNo;
-				objTK.tkNo = taiKhoan.thanhTien
+				objTK.idTaiKhoan = arr_idTK[j];
+				// console("taikhoan: "+ objTK.idTaiKhoan );
+				switch(j){
+					case 0: objTK.tkNo = chitiet.chung.soLuong * chitiet.chung.donGia * chitiet.tyGiaTienTe; 
+							objTK.tkCo = 0;
+							break;
+					case 1: objTK.tkCo = chitiet.chung.soLuong * chitiet.chung.donGia * chitiet.tyGiaTienTe; 
+							objTK.tkNo = 0;
+							break;
+					case 2: objTK.tkNo = chitiet.chung.soLuong * chitiet.chung.donGia * chitiet.hd.giaTriThueSuat; 
+							objTK.tkCo = 0;
+							break;
+					case 3: objTK.tkCo = chitiet.chung.soLuong * chitiet.chung.donGia * chitiet.hd.giaTriThueSuat; 
+							objTK.tkNo = 0;
+							break;
+				}
+				obj.cacTaiKhoan[j] = objTK;
+			// 	console.log("taiKhoan "+objTK);
 			}
 			chungtu.cacChiTiet[i] = obj;
 		}

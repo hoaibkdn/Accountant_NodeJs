@@ -3,51 +3,70 @@
     <div class="inner">
 
         <!-- Logo -->
-        <h1><a href="index.html" id="logo">ZeroFour</a></h1>
+        <h1><a href="index.html" id="logo">AM</a></h1>
         <pre></pre>
+
         <!-- Nav -->
         <nav id="nav">
+          
             <ul>
                 <li>
+                  <%
+                    if(user) { 
+                      if(user.role == 1){
+                  %>
+                  <a href="/danhsachtaikhoan">Xem báo cáo</a>
+                  <%
+                      }else{
+                  %>
+                  <a href="#">Mua hàng nhập kho</a>
+                    <ul>
+                        <li><a href="<%if(user){ if(user.role == 2){%>/kttt_pnk<%}}else{%>#<%}%>" 
+                        id="phieu-nhap-kho">Phiếu nhập kho</a></li>
+                        <li><a href="#">Điều chỉnh</a></li>
+                    </ul>
+                  <%
+                      }
+                    }else{
+                  %>
                     <a href="#">Mua hàng nhập kho</a>
                     <ul>
-                        <li><a href="<%if(user){%>/kttt_pnk<%}else{%>#<%}%>" id="phieu-nhap-kho">Phiếu nhập kho</a></li>
+                        <li><a href="<%if(user){ if(user.role == 2){%>/kttt_pnk<%}}else{%>#<%}%>" 
+                        id="phieu-nhap-kho">Phiếu nhập kho</a></li>
                         <li><a href="#">Điều chỉnh</a></li>
                     </ul>
-                </li>
-                <li>
-                    <a href="#">Vốn bằng tiền</a>
-                    <ul>
-                        <li><a href="#">Thu tiền mặt</a></li>
-                        <li><a href="#">Chi tiền mặt</a></li>
-                        <li><a href="#">Thu ngân hàng</a></li>
-                        <li><a href="#">Chi ngân hàng</a></li>
-                        <li><a href="#">Điều chỉnh</a></li>
-                    </ul>
+                  <%}%>
                 </li>
                 <li>
                     <%
                     if(user) {
+                      if(user.role == 2){
                     %><a href="#" class="" data-toggle="modal" data-target="#so-cai-tk" id="open-modal-socai">Báo cáo</a><%
-                } else {
+                }} else {
                 %><a href >Báo cáo</a><%
             }
             %>
             <ul>
                 <li><a href="#">Sổ cái chi tiết</a></li>
-                <li><a href="#">Sổ cái tổng hợp</a></li>
                 <li><a href="/soquytienmat">Sổ quỹ tiền mặt</a></li>
             </ul>
         </li>
     </ul>
-</nav>
-<%
-if(user) { %>
-
-<a href="#" class="login"><%=user.tenDangNhap%></a>
-<% } else { %>
-<a href="#" class="login" data-toggle="modal" data-target="#log-in" >Đăng nhập</a>
+    <%
+  if(user) { 
+     if(user.role == 2){
+%>
+<a href="/user/logout" class="login" style="margin-top:-2em; margin-right:-10em;"><%=user.tenDangNhap%></a>
+<% }} else { %>
+<a href="#" class="login" data-toggle="modal" data-target="#log-in" style="margin-top:-2em; margin-right:-10em;">Đăng nhập</a>
 <% } %>
+<% if(user) { 
+     if(user.role == 1){
+
+%>
+<a href="/user/logout" class="login" style="margin-top:-2em; margin-right:-9em;"><%=user.tenDangNhap%></a> 
+<% } }%>
+</nav>
 </div>
 </header>
 
@@ -148,11 +167,11 @@ if(user) { %>
           <p class="label-form">Mã nhà cung cấp</p>
       </div>
       <div class="col-md-3">
-        <select class="form-control" id="nha-cung-cap" name="nhaCungCap">
+        <select class="form-control" id="nha-cung-cap" name="nhaCungCap" onchange="changeNCC(this)">
         </select>
     </div>
     <div class="col-md-6">
-      <input type="text" class="form-control" value="" readonly>
+      <input type="text" id="tenNCC" class="form-control" value="Công ty gỗ nội thất" readonly>
   </div>
 </div>
 <div class="item-input col-md-12">
@@ -160,7 +179,7 @@ if(user) { %>
       <p class="label-form">Chọn tài khoản</p>
   </div>
   <div class="col-md-9">
-    <select class="form-control" id="tai-khoan" name="idTaiKhoan">
+    <select class="form-control" id="tai-khoan" name="idTaiKhoan" onchange="changeTK(this)">
     </select>
 </div>
 </div>
@@ -169,10 +188,7 @@ if(user) { %>
       <p class="label-form">Tên tài khoản</p>
   </div>
   <div class="col-md-9">
-    <select class="form-control" disabled>
-        <option>Nguyên vật liệu</option>
-        <option>Các khoản phải trả</option>
-    </select>
+    <input type="text" id="tenTK" class="form-control" value="Nguyên vật liệu" readonly>
 </div>
 </div>
 <div class="item-input col-md-12">
@@ -189,7 +205,7 @@ if(user) { %>
       <input type="date" class="form-control">
   </div>
 </div>
-<div class="item-input col-md-12">
+<!-- <div class="item-input col-md-12">
     <div class="col-md-3">
       <p class="label-form">Ngày hóa đơn</p>
   </div>
@@ -202,7 +218,7 @@ if(user) { %>
   <div class="col-md-4">
       <input type="date" class="form-control">
   </div>
-</div>
+</div> -->
 </div>
 <div class="modal-footer">
     <input type="button" class="btn login" data-dismiss="modal" value="Trở lại"/>

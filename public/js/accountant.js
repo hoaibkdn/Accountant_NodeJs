@@ -65,7 +65,7 @@ $(document).ready(function(){
     <option value="0.1">10%</option>
     </select>
     </td>
-    <td><input type="text" class="soTienVAT"></td>
+    <td class="soTienVAT"></td>
     <td class="thanhTien"></td>
     </tr>
     `;
@@ -76,6 +76,7 @@ $(document).ready(function(){
 		event.preventDefault();
     var chungtu = {};
     chungtu.ngayChungTu = $("#ngayChungTu").val();
+    alert("Ngay chungtu "+$("#ngayChungTu").val());
     chungtu.soChungTu = $("#soChungTu").val();
     chungtu.dienGiai = $("#dienGiai").val();
     chungtu.nhaCungCap = {};
@@ -160,6 +161,25 @@ function thanhTien(node){
   $("#general-table").find(`tr.${rowClass}`).find('td.thanhTien').text(total);
 }
 
+function changeMaNCC(maNCC){
+  const ar_tenNCC = ["Công ty gỗ nội thất","Công ty nguyên vật liệu xây dựng"];
+  const ar_diaChiNCC = ["Quận Hải Châu, Đà Nẵng","Quận Thanh Khê, Đà Nẵng"];
+  var inx_maNCC = maNCC.selectedIndex;
+  $("#tenNhaCC").val(ar_tenNCC[inx_maNCC]);
+  $("#diaChi").val(ar_diaChiNCC[inx_maNCC]);
+}
+
+function changeTK(idTK){
+  const ar_tenTK = ["Nguyên vật liệu","Các khoản phải trả", "Thuế giá trị gia tăng", "Tiền mặt"];
+  var inx_idTK = idTK.selectedIndex;
+  $("#tenTK").val(ar_tenTK[inx_idTK]);
+}
+
+function changeNCC(maNCC){
+  const ar_tenNCC = ["Công ty gỗ nội thất","Công ty nguyên vật liệu xây dựng"];
+  var inx_maNCC = maNCC.selectedIndex;
+  $("#tenNCC").val(ar_tenNCC[inx_maNCC]);
+}
 
 function changeInTwoTable(node){
   var tagName = node.tagName;
@@ -180,7 +200,6 @@ function changeInTwoTable(node){
 //set select in phieu nhap kho
 $(document).ready(function(){
   $("#phieu-nhap-kho").click(function(){
-    alert("alo");
     $.ajax({
       url: "/locsocai/yeucauNCC",
       success: function(data){
@@ -190,23 +209,6 @@ $(document).ready(function(){
         console.log("err " + err);
       }
   })
-  
-    // success: function(data){
-    //   console.log(data.optionNCC[0]);
-    //   for (var j in data.optionNCC){
-    //     console.log(data.optionNCC[j].maNhaCungCap);
-    //     $("#maNhaCC").append("<option value='"+data.optionNCC[j].maNhaCungCap+"'>"+data.optionNCC[j].maNhaCungCap+"</option>");
-    //   }
-    //   $("#maNhaCC").click(function(this){
-    //     $(".tenNhaCC").val(data.optionNCC[this.selectedIndex].tenNhaCungCap);
-    //     $(".diaChi").val(data.optionNCC[this.selectedIndex].diaChi);
-    //   });
-    //   return;
-    // },
-    // error : function (err){
-    //   console.log("err " + err);
-    //   return;
-    // }
   });
 });
 
@@ -264,3 +266,99 @@ function thanhTienHoaDon(node){
   $("#invoice-table").find(`tr.${rowClass}`).find('td.thanhTien').text(total);
 }
 
+//tong tien cong phat sinh of tai khoan
+$(document).ready(function(){
+  var generalID = document.getElementById("general-table-chi").childElementCount;
+  $("#btn-add-row-pc").click(function(){
+    generalID++;
+    $newRow = `
+    <tr class="chitiet-${generalID}">
+    <td>${generalID}</td>
+    <td><input type="text" class="dienGiai" onchange="changeInTwoTable(this)"></td>
+    <td><input type="text" class="maSoHH" onchange="changeInTwoTable(this)"></td>
+    <td>
+    <select onchange="changeInTwoTable(this)" data-sel="1" class="loaiTienTe">
+    <option>VND</option>
+    <option>USD</option>
+    <option>POUD</option>
+    </select>
+    </td>
+    <td onchange='thanhTien()' class="tyGia">1</td>
+    <td><input type="text" class="tkNo"></td>
+    <td><input type="text" class="tkCo"></td>
+    <td><input type="text" class="soLuong"></td>
+    <td><input type="text" class="donGia"></td>
+    <td>
+      <select onchange="thanhTienHoaDon(this)" class="giaTriThueSuat" 
+      name="giaTriThueSuat">
+        <option value="0">Không thuế suất</option>
+        <option value="0">0%</option>
+        <option value="0.05">5%</option>
+        <option value="0.1">10%</option>
+      </select>
+    </td>
+    <td class="thanhTien"></td>
+    </tr>
+    `;
+    $("#general-table-chi").append($newRow);
+  })
+
+  $("#btn-save-pc").click(function(event){
+    event.preventDefault();
+    var phieuchi = {};
+    phieuchi.ngayChungTu = $("#ngayChungTu").val();
+    phieuchi.soChungTu = $("#soChungTu").val();
+    phieuchi.dienGiai = $("#dienGiai").val();
+    phieuchi.nhaCungCap = {};
+    phieuchi.nhaCungCap.maNhaCC = $("#maNhaCC").val();
+    phieuchi.nhaCungCap.tenNhaCC = $("#tenNhaCC").val();
+    phieuchi.nhaCungCap.diaChi = $("#diaChi").val();
+    phieuchi.hoaDon = {};
+    phieuchi.hoaDon.maSoThue = $("#maSoThue").val();
+    phieuchi.hoaDon.kyHieuHD = $("#kyHieuHoaDon").val();
+    phieuchi.hoaDon.mauSo = $("#mauSo").val();
+    phieuchi.hoaDon.ngayHD = $("#ngayHoaDon").val();
+    phieuchi.hoaDon.soHD = $("#soHoaDon").val();
+
+    var tableData = [];
+
+    $("#general-table-chi").children("tr").each(function(index){
+      alert("chi tiet chi");
+      var pc = {};
+      pc.dienGiai = $(this).find("input.dienGiai").val();
+      pc.maSoHangHoa = $(this).find("input.maSoHH").val();
+      pc.loaiTienTe = $(this).find("select.loaiTienTe").val();
+      pc.tyGiaTienTe = $(this).find("td.tyGia").text();
+      pc.chung = {};
+      pc.chung.tkNo = $(this).find("input.tkNo").val();
+      console.log("tk No "+pc.chung.tkNo);
+      pc.chung.tkCo = $(this).find("input.tkCo").val();
+      pc.chung.soLuong = $(this).find("input.soLuong").val();
+      pc.chung.donGia = $(this).find("input.donGia").val();
+      pc.chung.thanhTien = $(this).find("td.thanhTien").text();
+      pc.chung.giaTriThueSuat = $(this).find("select.giaTriThueSuat").val();
+      tableData.push(pc);
+   })
+
+    phieuchi.cacChiTiet = tableData;
+    console.log("phieu chi "+phieuchi);
+
+    $.ajax({
+      type: "POST",
+      url: "/submitphieuchi",
+      contentType: 'application/json',
+      data: JSON.stringify(phieuchi),
+      dataType: "json",
+      success: function(data){
+        console.log("success", data);
+        alert("Đã hoàn thành phiếu chi");
+      },
+      error: function(data){
+        alert("fail");
+        console.log("error", data);
+      }
+    })
+  })  
+})
+
+//get data from Phieu chi tien mat
