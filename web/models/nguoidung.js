@@ -6,7 +6,8 @@ var userSchema = mongoose.Schema({
     tenDangNhap: String,
     matKhau: String,
     email: String,
-    role: Number
+    role: Number,
+    phanHoi: Number
 }, {
     collection: 'nguoidung'
 });

@@ -9,6 +9,14 @@
   text-decoration: inherit;
   font-weight: bold; }
 
+.phanhoi {
+  margin-top: -2em;
+  margin-right: -10em;
+  background-color: red;
+  border-radius: 50px;
+  line-height: 1;
+  padding: 0.5em 0.8em;
+}
 .label-form {
   float: left;
   padding-right: 2em; }

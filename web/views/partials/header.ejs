@@ -57,7 +57,14 @@
      if(user.role == 2){
 %>
 <a href="/user/logout" class="login" style="margin-top:-2em; margin-right:-10em;"><%=user.tenDangNhap%></a>
-<% }} else { %>
+<% 
+      if(user.phanHoi == 1  ){
+%>
+<a href id="idPhanHoi" class="login phanhoi">!</a>
+<%
+      }
+    }
+  } else { %>
 <a href="#" class="login" data-toggle="modal" data-target="#log-in" style="margin-top:-2em; margin-right:-10em;">Đăng nhập</a>
 <% } %>
 <% if(user) { 
@@ -188,7 +195,7 @@
       <p class="label-form">Tên tài khoản</p>
   </div>
   <div class="col-md-9">
-    <input type="text" id="tenTK" class="form-control" value="Nguyên vật liệu" readonly>
+    <input type="text" id="tenTK" name="tenTK" class="form-control" value="Nguyên vật liệu" readonly>
 </div>
 </div>
 <div class="item-input col-md-12">

@@ -4,9 +4,11 @@ module.exports = {
 	viewFilterSoCai: function(req, res, next) {
 		var maNhaCungCap = req.param("nhaCungCap");
 		var maTaiKhoan = req.param("idTaiKhoan");
+		var tenTK = req.param("tenTK");
 		console.log('maNhaCungCap: ', maNhaCungCap);
 		console.log('maTaiKhoan: ', maTaiKhoan);
 		Chungtu.find({
+			'loaiChungTu': 'Nhap Kho',
 			'nhaCungCap.maNhaCC': maNhaCungCap,
 			'cacChiTiet.cacTaiKhoan.idTaiKhoan': maTaiKhoan
 		}, function(err, baocao) {
@@ -21,7 +23,7 @@ module.exports = {
 		  			user: req.user,
 		  			baocao: baocao,
 		  			maTaiKhoan: maTaiKhoan,
-		  			tenTaiKhoan: "Nguyên vật liệu"
+		  			tenTaiKhoan: tenTK
 		  		});
 	  		}
 	  	});			

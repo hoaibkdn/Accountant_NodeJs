@@ -142,6 +142,54 @@ $(document).ready(function(){
 
 });
 
+//tong tien phat sinh
+$(document).ready(function(){
+  var congphatsinhNo = 0;
+  var congphatsinhCo = 0;
+  $("#socaitk").children("tr").each(function(){
+    console.log("row 1 "+ $(this).find("tkNo").val());
+    congphatsinhNo += $(this).find("tkNo").val();
+    congphatsinhCo += $(this).find("tkCo").val();
+  })
+  $("#cong-phat-sinh-no").val(congphatsinhNo);
+  $("#cong-phat-sinh-co").val(congphatsinhCo);
+  console.log("congphatsinhNo ",congphatsinhNo);
+})
+
+//phan hoi tu ke toan truong
+$(document).ready(function(){
+  $(".phanHoiKTTT").click(function(){
+    $.ajax({
+      type: "POST",
+      url: "/phanhoi",
+      success: function(){
+        console.log("success");
+        alert("Đã gửi phản hồi đến kế toán thanh toán");
+      },
+      error: function(){
+        alert("Gửi phản hồi thất bại");
+      }
+    })
+  })
+
+  $("#idPhanHoi").click(function(){
+    $("#idPhanHoi").css("display","none");
+
+    $.ajax({
+      type: "POST",
+      url: "/user/xemphanhoi",
+      success: function(){
+        console.log("success");
+      },
+      error: function(){
+        alert("Bạn có phản hồi từ kế toán trưởng vể việc nhập xuất hàng hóa");
+      }
+    })
+  })
+})
+
+
+
 function donViChange(unit){
   changeInTwoTable(unit);
   const ar_tyGia = [1,22500, 40000];

@@ -110,7 +110,7 @@
                           <th>Có</th>
                         </tr>
                       </thead>
-                      <tbody id="general-table">
+                      <tbody id="socaitk">
                         <tr>
                           <td></td>
                           <td></td>
@@ -127,9 +127,18 @@
                           <td><%=baocao[i].soChungTu%></td>
                           <td><%=baocao[i].ngayChungTu%></td>
                           <td><%=baocao[i].cacChiTiet[j].dienGiai%></td>
-                          <td><%=baocao[i].cacChiTiet[j].cacTaiKhoan[1].idTaiKhoan%></td>
-                          <td id='tkNo'+i><%=baocao[i].cacChiTiet[j].cacTaiKhoan[0].tkNo%></td>
+                          <% if(maTaiKhoan == "155" || maTaiKhoan == "1331"){ %>
+                          <td>331</td>
+                          <td class="tkNo" ='tkNo'+i><%=baocao[i].cacChiTiet[j].cacTaiKhoan[0].tkNo%></td>
                           <td></td>
+                          <%} else if(maTaiKhoan == "331"){%>
+                          <td>155,1331</td>
+                          <td></td>
+                          <td class='tkCo'+i><%=baocao[i].cacChiTiet[j].cacTaiKhoan[1].tkCo + 
+                                              baocao[i].cacChiTiet[j].cacTaiKhoan[3].tkCo%></td>
+                          <%}%>
+                          
+                          
                         </tr>
                         <%  
                               }  
@@ -141,8 +150,8 @@
                           <td></td>
                           <td></td>
                           <td>Cộng phát sinh</td>
-                          <td id="cong-phat-sinh"></td>
-                          <td></td>
+                          <td id="cong-phat-sinh-no"></td>
+                          <td id="cong-phat-sinh-co"></td>
                         </tr>
                       </tbody>
                     </table>

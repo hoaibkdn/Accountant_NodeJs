@@ -67,6 +67,7 @@ app.get('/phieuchitienmat', PhieuChiController.viewFormPhieuChi);
 app.post('/submitphieuchi', PhieuChiController.submitPhieuChi);
 app.get('/soquytienmat', SoQuyTienMatController.viewSoQuyTienMat);
 app.get('/danhsachtaikhoan', DanhSachTKController.viewDSTK);
+app.post('/phanhoi', DanhSachTKController.guiPhanHoi);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
