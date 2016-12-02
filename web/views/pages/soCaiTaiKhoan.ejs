@@ -125,7 +125,7 @@
                         %>
                         <tr>
                           <td><%=baocao[i].soChungTu%></td>
-                          <td><%=baocao[i].ngayChungTu%></td>
+                          <td><%=dsDate[i]%></td>
                           <td><%=baocao[i].cacChiTiet[j].dienGiai%></td>
                           <% if(maTaiKhoan == "155" || maTaiKhoan == "1331"){ %>
                           <td>331</td>
@@ -178,7 +178,7 @@
         </div>
       </div>
 
-      <button type="button" id="btnPrint" onclick="to_image()">Print</button>
+      <button type="button" id="btnPrint" style="margin-left: 65em;" onclick="to_image()">Print</button>
       <image id="theimage"></image>
     </div>
   </div>
@@ -202,7 +202,7 @@ function to_image(){
   console.log(urlData);
   var doc = new jsPDF();
   doc.addImage(urlData, 'JPEG', 15, 40, 180, 160);
-    doc.save("hoai'ss-ngok'ss.pdf");
+    doc.save("socaitaikhoan.pdf");
 }
 </script>
 </body>

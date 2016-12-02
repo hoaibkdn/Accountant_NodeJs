@@ -317,9 +317,9 @@ function thanhTienHoaDon(node){
   var tagName = node.tagName;
   var className = $(node).attr('class').split(" ")[0];
   var rowClass = $(node).closest("tr").attr("class");
-  var price = $("#invoice-table").find(`tr.${rowClass}`).find('input.soTienChuaVAT').val();
-  var exchange_rate = $("#invoice-table").find(`tr.${rowClass}`).find('td.tyGia').text();
-  var giaTriThueSuat = $('select[name=giaTriThueSuat]').val();
+  var price = parseFloat($("#invoice-table").find(`tr.${rowClass}`).find('input.soTienChuaVAT').val());
+  var exchange_rate = parseFloat($("#invoice-table").find(`tr.${rowClass}`).find('td.tyGia').text());
+  var giaTriThueSuat = parseFloat($('select[name=giaTriThueSuat]').val());
   console.log("giaTriThueSuat "+giaTriThueSuat);
   var soTienVAT = parseFloat(exchange_rate*price*giaTriThueSuat);
   var total = parseFloat(soTienVAT) + parseFloat(price);
@@ -332,10 +332,10 @@ function thanhTienPhieuChi(node){
   var tagName = node.tagName;
   var className = $(node).attr('class').split(" ")[0];
   var rowClass = $(node).closest("tr").attr("class");
-  var price = $("#general-table-chi").find(`tr.${rowClass}`).find('input.donGia').val();
-  var quantity = $("#general-table-chi").find(`tr.${rowClass}`).find('input.soLuong').val();
-  var exchange_rate = $("#general-table-chi").find(`tr.${rowClass}`).find('td.tyGia').text();
-  var giaTriThueSuat = $('select[name=giaTriThueSuat]').val();
+  var price = parseFloat($("#general-table-chi").find(`tr.${rowClass}`).find('input.donGia').val());
+  var quantity = parseFloat($("#general-table-chi").find(`tr.${rowClass}`).find('input.soLuong').val());
+  var exchange_rate = parseFloat($("#general-table-chi").find(`tr.${rowClass}`).find('td.tyGia').text());
+  var giaTriThueSuat = parseFloat($('select[name=giaTriThueSuat]').val());
   console.log("giaTriThueSuat "+giaTriThueSuat);
 
   var soTienVAT = parseFloat(exchange_rate*price*giaTriThueSuat*quantity);
@@ -399,7 +399,6 @@ $(document).ready(function(){
     var tableData = [];
 
     $("#general-table-chi").children("tr").each(function(index){
-      alert("chi tiet chi");
       var pc = {};
       pc.dienGiai = $(this).find("input.dienGiai").val();
       pc.maSoHangHoa = $(this).find("input.maSoHH").val();

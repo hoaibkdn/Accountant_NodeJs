@@ -13,8 +13,16 @@ module.exports = {
 			'cacChiTiet.cacTaiKhoan.idTaiKhoan': maTaiKhoan
 		}, function(err, baocao) {
 		  	console.log(baocao);
-		  	// console.log("chi tiet", baocao[0].soChungTu);
-		  	// console.log("bao cao "+baocao);
+		  	var dsDate = [];
+		  	for(var i=0; i<baocao.length; i++){
+		  		var formatDate;
+		  		var day = baocao[i].ngayChungTu.getDay();
+		  		var month = baocao[i].ngayChungTu.getMonth();
+		  		var year = "2016";
+		  		formatDate = day+"/"+month+"/"+year;
+		  		console.log("formatDate "+formatDate);
+		  		dsDate.push(formatDate);
+		  	}
 		  	// var bcjs = JSON.stringify(baocao);
 		  	if(err) next(err);
 		  	else{
@@ -23,7 +31,8 @@ module.exports = {
 		  			user: req.user,
 		  			baocao: baocao,
 		  			maTaiKhoan: maTaiKhoan,
-		  			tenTaiKhoan: tenTK
+		  			tenTaiKhoan: tenTK,
+		  			dsDate: dsDate
 		  		});
 	  		}
 	  	});			

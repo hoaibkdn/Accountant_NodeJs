@@ -28,6 +28,7 @@ module.exports = {
 		chungtu.soChungTu = ctReceived.soChungTu;
 		chungtu.dienGiai = ctReceived.dienGiai;
 		chungtu.nhaCungCap.maNhaCC = ctReceived.nhaCungCap.maNhaCC;
+		console.log("ma nha cung cap chi "+ ctReceived.nhaCungCap.maNhaCC);
 		chungtu.nhaCungCap.tenNhaCC = ctReceived.nhaCungCap.tenNhaCC;
 		chungtu.nhaCungCap.diaChi = ctReceived.nhaCungCap.diaChi;
 		chungtu.hoaDon.maSoThue = ctReceived.hoaDon.maSoThue;
