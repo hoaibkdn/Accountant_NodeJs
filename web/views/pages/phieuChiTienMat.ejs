@@ -37,7 +37,7 @@
                         <div class="6u">
                           <label for="ngayChungTu" class="label-form" >Ngày chứng từ  </label>
                           <input id="ngayChungTu" name="ngayChungTu" type="date" class="form-control" style="width:60%;" 
-                            value="<%= chungtu.ngayChungTu%>" readonly>
+                            value="<%= chungtu.ngayChungTu%>" >
                         </div>
                         <div class="6u">
                           <label for="soChungTu" class="label-form" >Số chứng từ  </label>
@@ -55,18 +55,18 @@
                       <div class="row">
                         <div class="5u">
                           <label for="maNhaCC" class="label-form" >Mã nhà cung cấp </label>
-                          <input type="text" name="" class="form-control" style="width:50%;" value="<%=chungtu.maNhaCC%>">
+                          <input type="text" name="" class="form-control" style="width:50%;" value="<%=chungtu.nhaCungCap.maNhaCC%>">
                         </div>
                         <div class="7u">
                           <input type="text" id="tenNhaCC" name="tenNhaCC" class="form-control" style="width:85%;" 
-                          value="<%=chungtu.tenNhaCC%>">
+                          value="<%=chungtu.nhaCungCap.tenNhaCC%>">
                         </div>
                       </div>
                       <div class="row">
                         <div class="12u">
                           <label for="diaChi" class="label-form" >Địa chỉ </label>
                           <input id="diaChi" name="diaChi" type="text" class="form-control" style="width:85%;"
-                          value="<%=chungtu.diaChi%>">
+                          value="<%=chungtu.nhaCungCap.diaChi%>">
                         </div>
                       </div>
                       <div class="row">
@@ -135,10 +135,10 @@
                               <td onchange='thanhTien()' class="tyGia">1</td>
                               <td><input type="text" class="tkNo"></td>
                               <td><input type="text" class="tkCo"></td>
-                              <td><input type="text" class="soLuong" onchange='thanhTien(this)'></td>
-                              <td><input type="text" class="donGia" onchange='thanhTien(this)'></td>
+                              <td><input type="text" class="soLuong" onchange='thanhTienPhieuChi(this)'></td>
+                              <td><input type="text" class="donGia" onchange='thanhTienPhieuChi(this)'></td>
                               <td>
-                                <select onchange="thanhTienHoaDon(this)" class="giaTriThueSuat" 
+                                <select onchange="thanhTienPhieuChi(this)" class="giaTriThueSuat" 
                                 name="giaTriThueSuat">
                                   <option value="0">Không thuế suất</option>
                                   <option value="0">0%</option>

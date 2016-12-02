@@ -144,16 +144,21 @@ $(document).ready(function(){
 
 //tong tien phat sinh
 $(document).ready(function(){
-  var congphatsinhNo = 0;
-  var congphatsinhCo = 0;
-  $("#socaitk").children("tr").each(function(){
-    console.log("row 1 "+ $(this).find("tkNo").val());
-    congphatsinhNo += $(this).find("tkNo").val();
-    congphatsinhCo += $(this).find("tkCo").val();
-  })
-  $("#cong-phat-sinh-no").val(congphatsinhNo);
-  $("#cong-phat-sinh-co").val(congphatsinhCo);
-  console.log("congphatsinhNo ",congphatsinhNo);
+  var resultNo=0,
+      resultCo=0,
+      ChildNo = document.getElementsByClassName("congphatsinhNo");
+      ChildCo = document.getElementsByClassName("congphatsinhCo");
+  console.log(ChildNo);
+  console.log(ChildCo);
+  for (i=0;i<ChildNo.length;i++){
+    resultNo += parseInt(ChildNo[i].innerHTML);
+    resultCo += parseInt(ChildCo[i].innerHTML);
+    console.log("result",ChildCo[i].innerHTML);
+    console.log("in: ",parseInt(ChildNo[i].innerHTML));
+  }
+  $("#cpsNo").text(resultNo);
+  $("#cpsCo").text(resultCo);
+  $("#cpsTM").text(resultNo);
 })
 
 //phan hoi tu ke toan truong
@@ -188,7 +193,15 @@ $(document).ready(function(){
   })
 })
 
+$(document).ready(function(){
 
+  //set open modal
+  $("#open-modal-socai").click(function(){
+    $("#so-cai-tk").modal("show");
+  });
+
+  //tong tien cong phat sinh
+});
 
 function donViChange(unit){
   changeInTwoTable(unit);
@@ -308,12 +321,27 @@ function thanhTienHoaDon(node){
   var exchange_rate = $("#invoice-table").find(`tr.${rowClass}`).find('td.tyGia').text();
   var giaTriThueSuat = $('select[name=giaTriThueSuat]').val();
   console.log("giaTriThueSuat "+giaTriThueSuat);
-  var soTienVAT = exchange_rate*price*giaTriThueSuat;
-  var total = soTienVAT + price;
+  var soTienVAT = parseFloat(exchange_rate*price*giaTriThueSuat);
+  var total = parseFloat(soTienVAT) + parseFloat(price);
   $("#invoice-table").find(`tr.${rowClass}`).find('td.soTienVAT').text(soTienVAT);
   $("#invoice-table").find(`tr.${rowClass}`).find('td.thanhTien').text(total);
 }
 
+//thanh tien phieu chi
+function thanhTienPhieuChi(node){
+  var tagName = node.tagName;
+  var className = $(node).attr('class').split(" ")[0];
+  var rowClass = $(node).closest("tr").attr("class");
+  var price = $("#general-table-chi").find(`tr.${rowClass}`).find('input.donGia').val();
+  var quantity = $("#general-table-chi").find(`tr.${rowClass}`).find('input.soLuong').val();
+  var exchange_rate = $("#general-table-chi").find(`tr.${rowClass}`).find('td.tyGia').text();
+  var giaTriThueSuat = $('select[name=giaTriThueSuat]').val();
+  console.log("giaTriThueSuat "+giaTriThueSuat);
+
+  var soTienVAT = parseFloat(exchange_rate*price*giaTriThueSuat*quantity);
+  var total = parseFloat(soTienVAT) + parseFloat(price);
+  $("#general-table-chi").find(`tr.${rowClass}`).find('td.thanhTien').text(total);
+}
 //tong tien cong phat sinh of tai khoan
 $(document).ready(function(){
   var generalID = document.getElementById("general-table-chi").childElementCount;

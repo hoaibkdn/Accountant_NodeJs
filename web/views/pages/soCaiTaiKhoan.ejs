@@ -129,12 +129,12 @@
                           <td><%=baocao[i].cacChiTiet[j].dienGiai%></td>
                           <% if(maTaiKhoan == "155" || maTaiKhoan == "1331"){ %>
                           <td>331</td>
-                          <td class="tkNo" ='tkNo'+i><%=baocao[i].cacChiTiet[j].cacTaiKhoan[0].tkNo%></td>
-                          <td></td>
+                          <td class="congphatsinhNo"><%=baocao[i].cacChiTiet[j].cacTaiKhoan[0].tkNo%></td>
+                          <td class='congphatsinhCo'>0</td>
                           <%} else if(maTaiKhoan == "331"){%>
                           <td>155,1331</td>
-                          <td></td>
-                          <td class='tkCo'+i><%=baocao[i].cacChiTiet[j].cacTaiKhoan[1].tkCo + 
+                          <td class="congphatsinhNo">0</td>
+                          <td class='congphatsinhCo'><%=baocao[i].cacChiTiet[j].cacTaiKhoan[1].tkCo + 
                                               baocao[i].cacChiTiet[j].cacTaiKhoan[3].tkCo%></td>
                           <%}%>
                           
@@ -150,8 +150,8 @@
                           <td></td>
                           <td></td>
                           <td>Cộng phát sinh</td>
-                          <td id="cong-phat-sinh-no"></td>
-                          <td id="cong-phat-sinh-co"></td>
+                          <td id="cpsNo"></td>
+                          <td id="cpsCo"></td>
                         </tr>
                       </tbody>
                     </table>

@@ -82,7 +82,7 @@
                           <td>Số dư đầu kỳ</td>
                           <td></td>
                           <td ></td>
-                          <td>10.000.000</td>
+                          <td></td>
                         </tr>
                         <%if(baocao){
                           for(var i=0; i<baocao.length; i++){
@@ -93,9 +93,9 @@
                           <td><%=baocao[i].ngayChungTu%></td>
                           <td></td>
                           <td><%=baocao[i].cacChiTiet[j].dienGiai%></td>
+                          <td class='congphatsinhCo'></td>
+                          <td class="congphatsinhNo"><%=baocao[i].cacChiTiet[j].cacTaiKhoan[1].tkCo%></td>
                           <td></td>
-                          <td><%=baocao[i].cacChiTiet[j].cacTaiKhoan[1].tkNo%></td>
-                          <td>100.000</td>
                         </tr>
                         <%
                               }
@@ -108,7 +108,7 @@
                           <td></td>
                           <td>Cộng phát sinh</td>
                           <td></td>
-                          <td>9.900.000</td>
+                          <td id="cpsTM"></td>
                           <td></td>
                         </tr>
                         <tr style="font-weight:bold;">
@@ -118,7 +118,7 @@
                           <td>Số dư cuối kỳ</td>
                           <td></td>
                           <td></td>
-                          <td>100.000</td>
+                          <td></td>
                         </tr>
                       </tbody>
                     </table>

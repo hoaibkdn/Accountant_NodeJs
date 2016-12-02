@@ -41,13 +41,15 @@
                     <%
                     if(user) {
                       if(user.role == 2){
-                    %><a href="#" class="" data-toggle="modal" data-target="#so-cai-tk" id="open-modal-socai">Báo cáo</a><%
+                    %><a href="#" class="" >Báo cáo</a><%
                 }} else {
                 %><a href >Báo cáo</a><%
             }
             %>
             <ul>
-                <li><a href="#">Sổ cái chi tiết</a></li>
+                <li>
+                    <a href data-toggle="modal" data-target="#so-cai-tk" id="open-modal-socai">Sổ cái chi tiết</a>
+                </li>
                 <li><a href="/soquytienmat">Sổ quỹ tiền mặt</a></li>
             </ul>
         </li>

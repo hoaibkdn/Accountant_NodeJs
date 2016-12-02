@@ -7,6 +7,9 @@ module.exports = {
 			'cacChiTiet.cacTaiKhoan.idTaiKhoan': "111",
 			'loaiChungTu':"ChiTienMat"
 		}, function(err, baocao) {
+			// var dateTime = new Date("2015-06-17 14:24:36");
+			// dateTime = moment(dateTime).format("YYYY-MM-DD HH:mm:ss");
+			// console.log("dateTime "+dateTime);
 		  	console.log(baocao);
 		  	if(err) next(err);
 		  	else{
